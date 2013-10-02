@@ -1,6 +1,6 @@
 <?php  
 
-include 'main/fxs.php';
+include ("../main/fxs.php");
 /*
 * Part 2 code modified by Clint Christopher Canada from different public domain sources
 * Part 1 code created by Clint Christopher Canada. BSD licensed.
@@ -8,18 +8,23 @@ include 'main/fxs.php';
 
 // This is Part I of the code
 $tbl = "importacion";
-$db_uname = 'mysql username';
-$db_passwd = 'mysql password';
 $db = 'database';
-$conn = mysql_pconnect('localhost',$db_uname, $db_passwd);
+//$db_uname = 'mysql username';
+//$db_passwd = 'mysql password';
+//$conn = mysql_pconnect('localhost',$db_uname, $db_passwd);
+$conn = conexion();
 
 // Path to dbase file
 $db_path = "../uploads/EDUC_PADSEP13.DBF";
 
 // Open dbase file
-$dbh = dbase_open($db_path, 0)
+//$dbh = dbase_open($db_path, 0)
+$dbh = dba_open($db_path, 0)
 or die("Error! Could not open dbase database file '$db_path'.");
 
+
+var_dump($dbh);
+exit;
 // Get column information
 $column_info = dbase_get_header_info($dbh);
 

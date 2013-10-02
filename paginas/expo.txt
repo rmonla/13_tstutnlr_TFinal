@@ -1,0 +1,3 @@
+Nº Escuela	Nombre Escuela	Cargo	Antiguedad	Nº Horas	Dias	Area	S. Revista
+   230      	230	D01	05	230	000	030	
+   419      	419	E01	04	419	015	030	

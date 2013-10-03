@@ -10,6 +10,7 @@ if (isset($_POST['dir'])) {
 echo '<form method="post">';
 echo '<table border="2">';
 echo '<tr><td>Directory</td><td><input type="text" size="50" name="dir" value="'.$dir.'"></td></tr>';
+//\.DBF
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {

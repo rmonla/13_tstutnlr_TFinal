@@ -8,7 +8,7 @@ function conexion(){
 		$mysql_host       = "localhost";
 		$mysql_usuario    = "root";
 		$mysql_contrasena = "";
-		$basedatos        = "sage_bd";
+		$basedatos        = "eduliq";
 	/* Conecto al motor de base de datos */
 		if (!($conexion_mysql = mysql_connect($mysql_host, $mysql_usuario,$mysql_contrasena))){
 			/*ERROR*/
@@ -108,4 +108,54 @@ function sql_insert($tabla, $datos){
     	return;
     }      
 }
+/*<®> fx cargarColumnasDeTabla <®>*/
+	/**
+	 * Función que carga los encavezados de columnas de una tabla dada de la BD.
+	 */
+function cargarColumnasDeTabla($tbl){
+	//$sql = "SELECT column_name FROM all_tab_columns WHERE table_name = '$tbl'";
+	//$sql = "SELECT column_name FROM all_tab_columns WHERE table_name = $tbl";
+	$sql = "SHOW FIELDS FROM $tbl";
+	//var_dump($sql);
+	$rs = ejecutar($sql);
+	//$resultado = mysql_fetch_array($rs);
+	//var_dump($resultado);
+	//echo '<pre>';
+	//print_r($resultado);
+	//echo '</pre>';
+	
+	//exit;
+	return $rs;
+}
+function mostrarDBF($archi, $desde ='0', $hasta = '0'){
+	include_once 'dbf_class/dbf_class.php';
+	
+	$file      = $archi; //WARNING !!! CASE SENSITIVE APPLIED !!!!!
+	$dbf       = new dbf_class($file);
+	$num_rec   = $dbf->dbf_num_rec;
+	$num_field = $dbf->dbf_num_field;
+
+	echo "Cantidad de Registros = $num_rec se mostraron desde el $desde hasta el $hasta.<br>";
+	
+	echo '<table border=1>';
+	$encavezados = cargarColumnasDeTabla('importacion');
+	echo '<tr>';
+	while($enc = mysql_fetch_array($encavezados))
+		echo '<th>'.$enc['Field'].'</th>';
+	echo '</tr>';
+	//for($i=0; $i<$num_rec; $i++){
+	for($i=$desde; $i<$hasta; $i++){
+		echo '<tr>';
+	   $row = $dbf->getRow($i);
+	   //echo ('<td>'.$i.'</td>');
+		for($j=0; $j<$num_field; $j++){
+			echo ('<td>'.$row[$j].'</td>');
+		}
+		echo '</tr>';
+		//echo('<br>');
+	}
+	echo '</table>';
+
+}   
+
 ?>

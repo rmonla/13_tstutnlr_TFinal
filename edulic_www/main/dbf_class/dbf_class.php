@@ -72,10 +72,11 @@ class dbf_class {
         $filesize = filesize($filename);
         $this->_raw = fread ($handle, $filesize);
         fclose ($handle);
+        /*
         //Make sure that we indeed have a dbf file...
         if(!(ord($this->_raw[0]) == 3 || ord($this->_raw[0]) == 131) && ord($this->_raw[$filesize]) != 26) {
             echo 'Not a valid DBF file !!!'; exit;
-        }
+        }*/
         // 3= file without DBT memo file; 131 ($83)= file with a DBT.
         $arrHeaderHex = array();
         for($i=0; $i<32; $i++){

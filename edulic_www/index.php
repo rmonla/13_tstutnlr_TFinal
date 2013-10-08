@@ -151,7 +151,7 @@
 						$path_dbfs = 'uploads/dbfs/';
 						if(descomprimirArch($archivo, $path_dbfs)){
 							$archivo = buscarPrimerDBF($path_dbfs);
-						importacion($archivo, $desde ='0', $hasta = '10');
+						importacion($archivo);
 
 			?>
 						<div id="container">

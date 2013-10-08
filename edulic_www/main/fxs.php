@@ -59,7 +59,30 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	/**
 	 * Función que inserta un registro en una tabla.
 	 */
-	function sql_insert($tabla, $datos){
+	function importacion($archivo, $desde ='0', $hasta = '0'){
+		/*<®> Cargo los nombres tablas y columnas de la BD <®>*/
+   		$tabla = 'importacion';
+   		$campos = cargarColumnasDeTabla($tabla);
+
+		/*<®> Armo los encavezados <®>*/
+			$enc = '';
+			while($col = mysql_fetch_array($campos))
+				$enc.= ','.$col['Field'];
+			$enc = substr($enc,1);
+		/*<®> Armo los datos <®>*/
+			$dat = '';
+			while($col = mysql_fetch_array($campos))
+				$enc.= ','.$col['Field'];
+			$enc = substr($enc,1);			
+			var_dump($enc);
+			exit;
+
+	}
+/*<®> fx sql_insert1 <®>*/
+	/**
+	 * Función que inserta un registro en una tabla.
+	 */
+	function sql_insert1($tabla, $datos){
 	  /*<®> Cargo los nombres tablas y columnas de la BD <®>*/
 	    $campos = array(
 	    						'logs' => array(

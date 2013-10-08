@@ -1,0 +1,48 @@
+a:link {
+color:#00F;
+text-decoration:none;
+}
+
+a:visited {
+text-decoration:none;
+}
+
+a:hover {
+color:#F03;
+text-decoration:underline;
+}
+
+.CompanyName {
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:23pt;
+}
+
+.Estilo1 {
+color:#00F;
+}
+
+.Estilo3 {
+color:#FC0;
+}
+
+.Estilo4 {
+color:#82A85E;
+font-weight:700;
+}
+
+.Estilo5 {
+font-size:12px;
+font-weight:700;
+color:#00F;
+}
+
+.Estilo8 {
+color:red;
+font-weight:700;
+font-size:12pt;
+}
+
+body,p,td {
+font-family:Verdana, Arial, Helvetica, sans-serif;
+font-size:9pt;
+}

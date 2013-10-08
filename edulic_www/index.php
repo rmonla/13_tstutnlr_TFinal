@@ -1,3 +1,6 @@
+<?php  
+	include_once 'main/fxs.php';
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
@@ -66,15 +69,9 @@
 				</div>
 				<div class="fl_right">
 					<ul>
-						<li class="last">
-							<a href="#">Search</a>
-						</li>
-						<li>
-							<a href="#">Online Support</a>
-						</li>
-						<li>
-							<a href="#">School Board</a>
-						</li>
+						<li class="last"><a href="#">Search</a></li>
+						<li><a href="#">Online Support</a></li>
+						<li><a href="#">School Board</a></li>
 					</ul>
 					<p>
 						Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com
@@ -88,44 +85,15 @@
 					<li class="">
 						<a href="index.php">Inicio</a>
 						<ul>
-							<li class="last">
-								<a href="#">Cargar liquidaciones</a>
+							<li class="last"><a href="#">Cargar liquidaciones</a>
 							</li>
 						</ul>
 					</li>
-					<li class="active">
-						<a href="#">Administración</a>
+					<li class="active"><a href="#">Administración</a>
 						<ul>
-							<li>
-								<a href="#">Importasíon</a>
-							</li>
-							<li>
-								<a href="#">Suspendisse in neque</a>
-							</li>
-							<li class="last">
-								<a href="#">Praesent et eros</a>
+							<li class="last"><a href="#">Importasíon</a>
 							</li>
 						</ul>
-					</li>
-					<li>
-						<a href="#">Carrera Académica</a>
-						<ul>
-							<li>
-								<a href="#">Lorem ipsum dolor</a>
-							</li>
-							<li>
-								<a href="#">Suspendisse in neque</a>
-							</li>
-							<li class="last">
-								<a href="#">Praesent et eros</a>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<a href="#">Our Services</a>
-					</li>
-					<li class="last">
-						<a href="#">Long Link Text</a>
 					</li>
 				</ul>
 			</div>
@@ -149,6 +117,7 @@
 		<!-- ####################################################################################################### -->
 		<div class="wrapper col3">
 			<div id="container">
+				<!-- <div id="content"> -->
 				<div id="content">
 		      	<h2>Importación de Archivo DBF</h2>
 			      <div id="respond">
@@ -166,7 +135,7 @@
 							&nbsp;
 								<input name="reset" type="reset" id="reset" tabindex="5" value="Reiniciar Formulario" />
 							</p>
-							<input type="hidden" name="upf" value="1">
+							<input type="hidden" name="upf">
 						</form>
 			      </div>
 	   		</div>
@@ -176,20 +145,21 @@
 			<?php  
 				if(verificarArchivo())
 					{ 
-						//$archivo = $_POST['userfile'];
-						//var_dump($_FILES, $_POST);
-						//var_dump($_POST);
-						//var_dump($archivo);
-						//exit;
-						subirArchivo();
+						$archivo = subirArchivo();
+						$path_dbfs = 'uploads/dbfs/';
+						if(descomprimirArch($archivo, $path_dbfs)){
+							$archivo = buscarPrimerDBF($path_dbfs);
+						
 			?>
 						<div id="container">
-							<h2>Table(s)</h2>
+							<h2>Vista prévia de Datos</h2>
 							<?php  
-								mostrarDBF($archivo, $desde ='1000', $hasta = '1010');
+								//$archivo = 'uploads/EDUC_PADSEP13.dbf';
+								mostrarDBF($archivo, '0', '10');
 							?>
 						</div>
-			<?php } ?>
+			<?php }} ?>
+			<div class="clear">
 		  </div>
 		</div>
 		<!-- ####################################################################################################### -->
@@ -216,21 +186,11 @@
 						Lacus interdum
 					</h2>
 					<ul>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Lorem ipsum dolor</a>
-						</li>
-						<li>
-							<a href="#">Suspendisse in neque</a>
-						</li>
-						<li class="last">
-							<a href="#">Praesent et eros</a>
-						</li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Lorem ipsum dolor</a></li>
+						<li><a href="#">Suspendisse in neque</a></li>
+						<li class="last"><a href="#">Praesent et eros</a></li>
 					</ul>
 				</div>
 				<div class="footbox">
@@ -238,21 +198,11 @@
 						Lacus interdum
 					</h2>
 					<ul>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Lorem ipsum dolor</a>
-						</li>
-						<li>
-							<a href="#">Suspendisse in neque</a>
-						</li>
-						<li class="last">
-							<a href="#">Praesent et eros</a>
-						</li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Lorem ipsum dolor</a></li>
+						<li><a href="#">Suspendisse in neque</a></li>
+						<li class="last"><a href="#">Praesent et eros</a></li>
 					</ul>
 				</div>
 				<div class="footbox">
@@ -260,21 +210,11 @@
 						Lacus interdum
 					</h2>
 					<ul>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Praesent et eros</a>
-						</li>
-						<li>
-							<a href="#">Lorem ipsum dolor</a>
-						</li>
-						<li>
-							<a href="#">Suspendisse in neque</a>
-						</li>
-						<li class="last">
-							<a href="#">Praesent et eros</a>
-						</li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Praesent et eros</a></li>
+						<li><a href="#">Lorem ipsum dolor</a></li>
+						<li><a href="#">Suspendisse in neque</a></li>
+						<li class="last"><a href="#">Praesent et eros</a></li>
 					</ul>
 				</div><br class="clear">
 			</div>
@@ -304,16 +244,19 @@
 	 * Función que verifica si se eligió un archivo correctamente.
 	 */
 function verificarArchivo(){
-   var_dump($_FILES, $_POST);
+   //var_dump($_FILES, $_POST);
    //exit;
-   if (!isset($_POST['upf'])) return false;
-   if ($_FILES['userfile']['error'] > 0){
-   	echo 'Error en archivo seleccionado !!!'; return false;
+   
+   if(!isset($_POST['upf'])) return false;
+   if($_FILES['userfile']['error'] > 0){
+   	echo 'Error en archivo seleccionado !!!';
+      return false;
    }
-   $ext = substr($_FILES['userfile']['name'],-4);
-	$comp = (strcasecmp($ext, '.zip')!=0) ? (strcasecmp($ext, '.rar')!=0)? : false ;
-	if ($comp) {
-      echo 'El archivo DBF, debe estar comprimido en un .ZIP o .RAR !!!'; return false;
+	$ext = strtolower(substr($_FILES['userfile']['name'],-4));
+	$permitidos = array('.zip','.rar');
+	if(!in_array($ext, $permitidos)){
+		echo 'La extensión del archivo no corresponde, <br> recuerde que el DBF debe estar comprimido en un .ZIP o .RAR !!!'; 
+		return false;
 	}
    return true;
 }
@@ -331,18 +274,15 @@ function subirArchivo(){
    /**
     * Destino
     */
-      $destino = 'uploads/';
+		$path_dest = 'uploads/';
+		$destino   = $path_dest.$arch_nombre;
    /**
     * Subo el archivo.
     */
-      if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $destino.$arch_nombre))
-         echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";     
-            
-            //echo "El archivo ha sido cargado correctamente."; 
-         //else
-   
-   //$dominio = $_SERVER['HTTP_HOST'];
-   //$resto_url = $_SERVER['REQUEST_URI'];
-   //$_SESSION['temp_file'] = $dominio.$resto_url.$arch_destino.$arch_nombre;  
+      if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $destino)){
+         echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
+         return false;
+   	}
+   	return $destino; 
 }
 ?>

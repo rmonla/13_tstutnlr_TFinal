@@ -144,7 +144,6 @@
 			<div class="clear">
 			<?php  
 				$datos = array('10', '12');
-				sql_insert2('importacion', $datos);
 				
 				if(verificarArchivo())
 					{ 
@@ -152,7 +151,8 @@
 						$path_dbfs = 'uploads/dbfs/';
 						if(descomprimirArch($archivo, $path_dbfs)){
 							$archivo = buscarPrimerDBF($path_dbfs);
-						
+						importacion($archivo, $desde ='0', $hasta = '10');
+
 			?>
 						<div id="container">
 							<h2>Vista prévia de Datos</h2>

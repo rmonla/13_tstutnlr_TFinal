@@ -30,7 +30,8 @@ function conexion(){
 	 * Función que retorna registros desde una consulta SQL.
 	 */
 function ejecutar($sql){
-	return mysql_query($sql, conexion());
+	if (!$rs = mysql_query($sql, conexion())) return false;
+	return $rs;
 }
 /*<®> fx msj <®>*/
 	/**
@@ -60,23 +61,38 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	 * Función que inserta un registro en una tabla.
 	 */
 	function importacion($archivo, $desde ='0', $hasta = '0'){
+		include_once 'dbf_class/dbf_class.php';
+		
+		$file     = $archivo; //WARNING !!! CASE SENSITIVE APPLIED !!!!!
+		$dbf      = new dbf_class($file);
+		$num_regs = $dbf->dbf_num_rec;
+		$num_cols = $dbf->dbf_num_field;
+		$num_cols = $num_cols - '8'; //por que me trae unas columnas basias.
+
+
 		/*<®> Cargo los nombres tablas y columnas de la BD <®>*/
-   		$tabla = 'importacion';
-   		$campos = cargarColumnasDeTabla($tabla);
+   		$tbl = 'importacion';
+   		$campos = cargarColumnasDeTabla($tbl);
 
 		/*<®> Armo los encavezados <®>*/
 			$enc = '';
 			while($col = mysql_fetch_array($campos))
 				$enc.= ','.$col['Field'];
 			$enc = substr($enc,1);
-		/*<®> Armo los datos <®>*/
-			$dat = '';
-			while($col = mysql_fetch_array($campos))
-				$enc.= ','.$col['Field'];
-			$enc = substr($enc,1);			
-			var_dump($enc);
-			exit;
-
+		/*<®> Agregos los registros a la BD <®>*/
+			$desde = ($desde > '0') ? $desde : '0' ;
+			$hasta = ($hasta > '0') ? $hasta : $num_regs ;
+			for($i=$desde; $i<$hasta; $i++){
+		   	$row = $dbf->getRow($i);
+				$dat = '';
+				for($j=0; $j<$num_cols; $j++)
+					$dat.= ",'$row[$j]'";
+				$dat = substr($dat,1);
+				$sql = "INSERT INTO $tbl ( $enc ) VALUES ( $dat )";
+				//var_dump($sql);
+				//exit;
+				ejecutar($sql);
+			}
 	}
 /*<®> fx sql_insert1 <®>*/
 	/**

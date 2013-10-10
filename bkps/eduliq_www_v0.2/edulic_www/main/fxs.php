@@ -128,7 +128,7 @@ function cargarColumnasDeTabla($tbl){
 	return $rs;
 }
 function mostrarDBF($archi, $desde ='0', $hasta = '0'){
-	include_once 'dbf_class/dbf_class.php';
+	include_once 'dbf_class.php';
 	
 	$file      = $archi; //WARNING !!! CASE SENSITIVE APPLIED !!!!!
 	$dbf       = new dbf_class($file);

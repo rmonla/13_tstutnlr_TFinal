@@ -15,6 +15,7 @@
 		<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
 		<script type="text/javascript" src="scripts/jquery-ui-1.7.2.custom.min.js"></script>
 		<script type="text/javascript" src="scripts/jquery.tabs.setup.js"></script>
+		<script type="text/javascript" src="main/importar.js"></script>
 	</head>
 	<body>
 		<div class="wrapper co10">
@@ -22,9 +23,8 @@
 				<div id="slidepanel">
 					
 					<div class="topbox">
-						<h2>
-							Login del Sistema
-						</h2>
+						<h2>Login del Sistema</h2>
+						
 						<form action="#" method="post">
 							<fieldset>
 								<legend>Teachers Login Form</legend> 
@@ -85,13 +85,16 @@
 					<li class="">
 						<a href="index.php">Inicio</a>
 						<ul>
-							<li class="last"><a href="#">Cargar liquidaciones</a>
+							<li class="last">
+								<a href="#">Cargar liquidaciones</a>
 							</li>
 						</ul>
 					</li>
-					<li class="active"><a href="#">Administración</a>
+					<li class="active">
+						<a href="#">Administración</a>
 						<ul>
-							<li class="last"><a href="#">Importasíon</a>
+							<li class="last">
+								<a href="#">Importasíon</a>
 							</li>
 						</ul>
 					</li>
@@ -156,16 +159,28 @@
 						<div id="container">
 							<div id="content">
 								<h2>Importación de Agentes</h2>
-								<p>
-									<input name="submit" type="submit" 
-									id="imp_agentes" value="Importar Agentes"
-									onclick='importar();' />
-								&nbsp;
-								</p>
-	<!-- 							<?php  
-									//$archivo = 'uploads/EDUC_PADSEP13.dbf';
-									mostrarDBF($archivo, '0', '10');
-								?> -->
+								<div id="respond">
+									<p>
+									<div id="botImpAgentes">
+										<input name="submit" type="submit" 
+										id="botImpAgentes" value="Importar Agentes"
+										onclick="alert('♦♦ ☺☺ Franco Ricardo Monla ☺☺ ♦♦')" />
+									&nbsp;
+									</div>
+									<div id="dbf_filas">
+										<?php  
+											$dbf_filas = contFilasDBF($archivo);
+											echo $dbf_filas;
+										?>
+									</div>
+									</p>
+		<!-- 							<?php  
+										//$archivo = 'uploads/EDUC_PADSEP13.dbf';
+										mostrarDBF($archivo, '0', '10');
+									?> -->
+								<br>
+								<br>
+								</div>
 							</div>
 						</div>
 			<?php }} ?>

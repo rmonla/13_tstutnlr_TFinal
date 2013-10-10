@@ -1,5 +1,5 @@
 <?php 
-	include_once '../../main/dbf_class/dbf_class.php';
+	include_once '../../main/dbf_class.php';
 	include_once '../../main/fxs.php';
 	
 	$file = '../../uploads/dbfs/EDUC_PADSEP13.DBF'; 

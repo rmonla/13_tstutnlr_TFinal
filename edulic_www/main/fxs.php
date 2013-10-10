@@ -9,14 +9,14 @@ function conexion(){
 		//var_dump($dominio);
 		//exit;
 		switch ($dominio) {
-			case 'localhost':
+			case 'localhost': //Si se está ejecutando en mi pc.
 				$mysql_host       = "localhost";
 				$mysql_usuario    = "root";
 				$mysql_contrasena = "";
 				$basedatos        = "eduliq";
 				break;
 			
-			default:
+			default: //Si se está ejecutando en hostinger.
 				$mysql_host       = "mysql.hostinger.es";
 				$mysql_usuario    = "u138934575_edliq";
 				$mysql_contrasena = "$01rmonla";
@@ -76,7 +76,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	 * Función que inserta un registro en una tabla.
 	 */
 	function importacion($archivo, $hasta = '0', $desde ='0'){
-		include_once 'dbf_class/dbf_class.php';
+		include_once 'dbf_class.php';
 		
 		$file     = $archivo; //WARNING !!! CASE SENSITIVE APPLIED !!!!!
 		$dbf      = new dbf_class($file);
@@ -171,12 +171,24 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		$rs = ejecutar($sql);
 		return $rs;
 	}
+/*<®> fx contFilasDBF <®>*/
+	/**
+	 * Función que cuanta las filas de un archivo DBF.
+	 */
+function contFilasDBF($arch_dbf){
+	/*<®> includes <®>*/
+		include_once 'dbf_class.php';
+	/*<®> Instancio la calse <®>*/
+		$dbf      = new dbf_class($arch_dbf);
+	/*<®> Retorno el resultado <®>*/
+		return $dbf->dbf_num_rec;
+}
 /*<®> fx mostrarDBF <®>*/
 	/**
 	 * Función que muestra el contenido de un archivo DBF por pantalla.
 	 */
 	function mostrarDBF($archivo, $desde ='0', $hasta = '0'){
-		include_once 'dbf_class/dbf_class.php';
+		include_once 'dbf_class.php';
 		
 		$file     = $archivo; //WARNING !!! CASE SENSITIVE APPLIED !!!!!
 		$dbf      = new dbf_class($file);

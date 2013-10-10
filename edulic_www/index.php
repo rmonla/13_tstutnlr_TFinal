@@ -117,7 +117,6 @@
 		<!-- ####################################################################################################### -->
 		<div class="wrapper col3">
 			<div id="container">
-				<!-- <div id="content"> -->
 				<div id="content">
 		      	<h2>Importación de Archivo DBF</h2>
 			      <div id="respond">
@@ -151,15 +150,23 @@
 						$path_dbfs = 'uploads/dbfs/';
 						if(descomprimirArch($archivo, $path_dbfs)){
 							$archivo = buscarPrimerDBF($path_dbfs);
-						importacion($archivo);
+						//importacion($archivo,'10');
 
 			?>
 						<div id="container">
-							<h2>Vista prévia de Datos</h2>
-							<?php  
-								//$archivo = 'uploads/EDUC_PADSEP13.dbf';
-								mostrarDBF($archivo, '0', '10');
-							?>
+							<div id="content">
+								<h2>Importación de Agentes</h2>
+								<p>
+									<input name="submit" type="submit" 
+									id="imp_agentes" value="Importar Agentes"
+									onclick='importar();' />
+								&nbsp;
+								</p>
+	<!-- 							<?php  
+									//$archivo = 'uploads/EDUC_PADSEP13.dbf';
+									mostrarDBF($archivo, '0', '10');
+								?> -->
+							</div>
 						</div>
 			<?php }} ?>
 			<div class="clear">

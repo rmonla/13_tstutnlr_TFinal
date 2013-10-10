@@ -5,10 +5,25 @@
 	 */
 function conexion(){
 	/* Inicilizo  las variables de conexion */
-		$mysql_host       = "localhost";
-		$mysql_usuario    = "root";
-		$mysql_contrasena = "";
-		$basedatos        = "eduliq";
+		$dominio = $_SERVER['HTTP_HOST'];
+		//var_dump($dominio);
+		//exit;
+		switch ($dominio) {
+			case 'localhost':
+				$mysql_host       = "localhost";
+				$mysql_usuario    = "root";
+				$mysql_contrasena = "";
+				$basedatos        = "eduliq";
+				break;
+			
+			default:
+				$mysql_host       = "mysql.hostinger.es";
+				$mysql_usuario    = "u138934575_edliq";
+				$mysql_contrasena = "$01rmonla";
+				$basedatos        = "u138934575_edliq";
+				break;
+		}
+
 	/* Conecto al motor de base de datos */
 		if (!($conexion_mysql = mysql_connect($mysql_host, $mysql_usuario,$mysql_contrasena))){
 			/*ERROR*/
@@ -60,7 +75,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	/**
 	 * Función que inserta un registro en una tabla.
 	 */
-	function importacion($archivo, $desde ='0', $hasta = '0'){
+	function importacion($archivo, $hasta = '0', $desde ='0'){
 		include_once 'dbf_class/dbf_class.php';
 		
 		$file     = $archivo; //WARNING !!! CASE SENSITIVE APPLIED !!!!!

@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
 		<script type="text/javascript" src="scripts/jquery-ui-1.7.2.custom.min.js"></script>
 		<script type="text/javascript" src="scripts/jquery.tabs.setup.js"></script>
-		<script type="text/javascript" src="main/importar.js"></script>
+		<script type="text/javascript" src="main/fxs.js"></script>
 	</head>
 	<body>
 		<div class="wrapper co10">
@@ -149,12 +149,15 @@
 				
 				if(verificarArchivo())
 					{ 
-						$archivo = subirArchivo();
+						$zip_arch = subirArchivo();
 						$path_dbfs = 'uploads/dbfs/';
-						if(descomprimirArch($archivo, $path_dbfs)){
-							$archivo = buscarPrimerDBF($path_dbfs);
-						//importacion($archivo,'10');
-
+						if(descomprimirArch($zip_arch, $path_dbfs)){
+							if(!$dbf_arch = buscarPrimerDBF($path_dbfs)){
+								echo "No se puede encontrar en archivo .dbf en $zip_arch";
+								exit;
+							}
+						$dbf_filas = contFilasDBF($dbf_arch);
+						//$dbf_filas = '20';
 			?>
 						<div id="container">
 							<div id="content">
@@ -164,20 +167,41 @@
 									<div id="botImpAgentes">
 										<input name="submit" type="submit" 
 										id="botImpAgentes" value="Importar Agentes"
-										onclick="alert('♦♦ ☺☺ Franco Ricardo Monla ☺☺ ♦♦')" />
+										onclick="importarDesdeDBF()" />
 									&nbsp;
 									</div>
-									<div id="dbf_filas">
-										<?php  
-											$dbf_filas = contFilasDBF($archivo);
-											echo $dbf_filas;
-										?>
+									<table>
+										<tr>
+											<th>Archivo</th>
+											<th>Filas</th>
+											<th>Fila</th>
+											<th>Estado</th>
+											<th>Importados</th>
+											<th>Encontrados</th>
+											<th>Agentes</th>
+										</tr>
+										<tr>
+											<td><div id="dbf_arch"><?php echo "$dbf_arch"; ?></div></td>
+											<td><div id="dbf_filas"><?php echo "$dbf_filas"; ?></div></td>
+											<td><div id="dbf_fila">0</div></td>
+											<td><div id="dbf_estado">Iniciar</div></td>
+											<td><div id="dbf_importado">0</div></td>
+											<td><div id="dbf_encontrado">0</div></td>
+											<td><div id="cant_agentes">0</div></td>
+										</tr>
+									</table>	
+									<div id="botPru">
+										<input name="submit" type="submit" 
+										id="botImpAgentes" value="Pru"
+										onclick="contarRegs('agentes', 'cant_agentes')" />
+									&nbsp;
 									</div>
+
 									</p>
-		<!-- 							<?php  
+		 							<?php  
 										//$archivo = 'uploads/EDUC_PADSEP13.dbf';
-										mostrarDBF($archivo, '0', '10');
-									?> -->
+										//mostrarDBF($archivo, '0', '10');
+									?> 
 								<br>
 								<br>
 								</div>
@@ -289,25 +313,25 @@ function verificarArchivo(){
 	/**
 	 * Función que sube un archivo seleccionado.
 	 */
-function subirArchivo(){
-   /**
-    * Datos del Archivo.
-    */
-      $arch_nombre  = $_FILES['userfile']['name']; 
-      $arch_tipo    = $_FILES['userfile']['type']; 
-      $arch_tamanio = $_FILES['userfile']['size'];
-   /**
-    * Destino
-    */
-		$path_dest = 'uploads/';
-		$destino   = $path_dest.$arch_nombre;
-   /**
-    * Subo el archivo.
-    */
-      if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $destino)){
-         echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
-         return false;
-   	}
-   	return $destino; 
-}
+	function subirArchivo(){
+	   /**
+	    * Datos del Archivo.
+	    */
+	      $arch_nombre  = $_FILES['userfile']['name']; 
+	      $arch_tipo    = $_FILES['userfile']['type']; 
+	      $arch_tamanio = $_FILES['userfile']['size'];
+	   /**
+	    * Destino
+	    */
+			$path_dest = 'uploads/';
+			$destino   = $path_dest.$arch_nombre;
+	   /**
+	    * Subo el archivo.
+	    */
+	      if (!move_uploaded_file($_FILES['userfile']['tmp_name'], $destino)){
+	         echo "Ocurrió algún error al subir el fichero. No pudo guardarse.";
+	         return false;
+	   	}
+	   	return $arch_nombre; 
+	}
 ?>

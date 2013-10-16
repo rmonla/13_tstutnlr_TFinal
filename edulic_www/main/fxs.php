@@ -48,6 +48,15 @@ function ejecutar($sql){
 	if (!$rs = mysql_query($sql, conexion())) return false;
 	return $rs;
 }
+/*<®> fx myURL <®>*/
+	/**
+	 * Función que obtiene la URL actual.
+	 */
+function myURL(){
+	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	return $url;
+}
+
 /*<®> fx msj <®>*/
 	/**
 	 * Función que muestra un mensaje de error por pantalla.
@@ -171,18 +180,6 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		$rs = ejecutar($sql);
 		return $rs;
 	}
-/*<®> fx contFilasDBF <®>*/
-	/**
-	 * Función que cuanta las filas de un archivo DBF.
-	 */
-function contFilasDBF($arch_dbf){
-	/*<®> includes <®>*/
-		include_once 'dbf_class.php';
-	/*<®> Instancio la calse <®>*/
-		$dbf      = new dbf_class($arch_dbf);
-	/*<®> Retorno el resultado <®>*/
-		return $dbf->dbf_num_rec;
-}
 /*<®> fx mostrarDBF <®>*/
 	/**
 	 * Función que muestra el contenido de un archivo DBF por pantalla.
@@ -226,17 +223,14 @@ function contFilasDBF($arch_dbf){
 		/**
 		 * Función que descomprime el archivo enviado.
 		 */
-	function descomprimirArch($arch, $destino){
-		//$path_dest = 'uploads/';
-		//$path_tmps = 'tmps/';
-		//$path_dbfs = 'dbfs/';
-		//$arch_nomb = explode('/', $arch);
-		//$arch_nomb = $arch_nomb[count($arch_nomb)-1];
-		//$destino = $path_dest.$path_tmps;
-
+	function descomprimirArch($zip_arch, $path_dest){
+		$path_orig = 'uploads/';
+		$zip_arch = $path_orig.$zip_arch;
+		//var_dump($zip_arch);
+	   //exit;
 		$zip = new ZipArchive;
-		if ($zip->open($arch) === TRUE) {
-		    $zip->extractTo($destino);
+		if ($zip->open($zip_arch) === TRUE) {
+		    $zip->extractTo($path_dest);
 		    $zip->close();
 	   } else {
 	   	echo "No se pudo descomprimir el archivo.";
@@ -249,8 +243,8 @@ function contFilasDBF($arch_dbf){
 	/**
 	 * Función que buscar el primer archivo DBF que encuentre en un carpeta dada.
 	 */
-	function buscarPrimerDBF($carpdbfs){
-		$dir = opendir($carpdbfs); 
+	function buscarPrimerDBF($path_dbfs){
+		$dir = opendir($path_dbfs); 
 		$archivo = readdir($dir);
 		$arch_dbf = 'NoEncontrado';
 		$stop = 0;
@@ -258,15 +252,73 @@ function contFilasDBF($arch_dbf){
 	      if ($archivo != ".")
 	      	if($archivo != ".." ){
 	      		$arch = explode('.', $archivo);
+	      		//var_dump($arch);
+	      		//exit;
 	      		$ext = strtolower($arch[1]);
 	      		if($ext == 'dbf'){
-	      			$arch_dbf = $carpdbfs.$archivo;
+	      			$arch_dbf = $archivo;
 	      			break;
       			}
 				}
 		}
 		closedir($dir);
-		//var_dump($arch_dbf);
+		if($arch_dbf == 'NoEncontrado') return false;
 		return $arch_dbf;
 	}
+/*<®> fx contFilasDBF <®>*/
+	/**
+	 * Función que cuanta las filas de un archivo DBF.
+	 */
+	function contFilasDBF($arch_dbf){
+		/*<®> includes <®>*/
+			include_once 'dbf_class.php';
+		/*<®> Variables <®>*/
+			$dbf_path = 'uploads/dbfs/';
+			$file = $dbf_path.$arch_dbf;
+
+			//var_dump($file);
+		/*<®> Instancio la calse <®>*/
+			$dbf  = new dbf_class($file);
+		/*<®> Retorno el resultado <®>*/
+			return $dbf->dbf_num_rec;
+	}
+/*<®> fx obtenerRegDBF <®>*/
+	/**
+	 * Función que obtiene un registro de un archivo DBF.
+	 */
+	function obtenerRegDBF($arch_dbf, $id){
+		/*<®> includes <®>*/
+			include_once 'dbf_class.php';
+		/*<®> Instancio la calse <®>*/
+			$dbf      = new dbf_class($arch_dbf);
+		/*<®> Retorno el resultado <®>*/
+			return $dbf->getRow($id);
+	}
+/*<®> fx buscarReg <®>*/
+	/**
+	 * Función que retoran verdadero si encuentra un registro en una tabla.
+	 */
+	function buscarReg($tbl, $col, $id){
+		/*<®> Sentencia SQL <®>*/
+			$sql = "SELECT * FROM $tbl WHERE $col=$id";
+			$rs = ejecutar($sql);
+		/*<®> Verifico si se encontró el registro <®>*/
+			$res = mysql_num_rows($rs);
+		/*<®> Imprimo el resultado <®>*/
+			return ($res != 0)? true : false;
+	}
+/*<®> fx contarRegs <®>*/
+	/**
+	 * Función que retorna la catidad de registros de una tabla.
+	 */
+	function contarRegs($tbl){
+		/*<®> Sentencia SQL <®>*/
+			$sql = "SELECT COUNT(*) as $tbl FROM $tbl";
+			$rs = ejecutar($sql);
+		/*<®> Cuento los registros <®>*/
+			$res = mysql_fetch_array($rs);
+		/*<®> Imprimo el resultado <®>*/
+			return $res[$tbl];
+	}
+
 ?>

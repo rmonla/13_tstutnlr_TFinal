@@ -11,5 +11,6 @@
 	/*<®> Verifico si se encontró el registro <®>*/
 		$res = mysql_num_rows($rs);
 	/*<®> Imprimo el resultado <®>*/
+		$res =($res != 0)? false : true;
 		echo $res;
 ?>

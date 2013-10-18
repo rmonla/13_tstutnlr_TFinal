@@ -181,25 +181,32 @@
 											<td><div id="dbf_arch" align="center"><?php echo "$dbf_arch"; ?></div></td>
 											<td><div id="dbf_filas" align="center"><?php echo "$dbf_filas"; ?></div></td>
 											<td>
-												<div id="importacion">
+												<?php  
+													$arr_tbls = array('agentes', 'zonas', 'areas', 'planes', 'agrupaciones');
+												?>
+												<div id="importacion">	
 													<table>
 														<tbody>
 															<tr>
 																<th align="center">Estado</th>
 																<th align="center">Fila</th>
-																<th align="center">Agentes</th>
-																<th align="center">Escuelas</th>
-																<th align="center">Liquidaciones</th>
+																<?php foreach ($arr_tbls as $tbl) { ?>
+																	<th align="center"><?php echo ucfirst($tbl); ?></th>
+																<?php } ?>
 															</tr>
-															<tr>
-																<td align="center"><div id="imp_estado">Iniciar</div></td>
-																<td align="center">0</td>
-																<td><div><?php echo contarRegs('agentes'); ?> En la BD</div></td>
-																<td><div><?php //echo contarRegs('escuelas'); ?> En la BD</div></td>
-																<td><div><?php //echo contarRegs('liquidaciones'); ?> En la BD</div></td>
-															</tr>
-														</tbody>
-													</table>
+														<tr>
+															<td align="center">
+																<div id="imp_estado">Iniciar</div>
+															</td>
+															<td align="center">0</td>
+															<?php foreach ($arr_tbls as $tbl) { ?>
+																<td>
+																	<div align="center"><?php echo contarRegs($tbl); ?></div>
+																</td>
+															<?php } ?>
+														</tr>
+													</tbody>
+												</table>
 												</div>
 											</td>
 										</tr>

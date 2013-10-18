@@ -14,119 +14,125 @@
 			$dbf       = new dbf_class($dbf_arch);
 			$dbf_filas = $dbf->dbf_num_rec;
 			//$dbf_filas = 50;
-		/*<®> Array de Importacion <®>*/
-			$cols = array('agentes' => array(
-												'docu' => 0, 
-												'cuil' => 1, 
-												'nom'  => 3, 
-												'sexo' => 4),
-								'zonas' => array(
-												'zona' => 5),
-								'escuelas' => array(),
-								'liquidaciones' => array(),
-								);
 		/*<®> Obtengo la datos desde donde quedó la importación <®>*/
-			$sql           = "SELECT * FROM importaciones WHERE id = 1";
-			$rs            = mysql_fetch_array(ejecutar($sql));
+			$sql = "SELECT * FROM importaciones WHERE id = 1";
+			$rs  = mysql_fetch_array(ejecutar($sql));
 		/*<®> Si el estado es Terminado inicio en 0<®>*/
-			$estado = $rs['estado'];
-			if($estado == 'Terminado'){
-				$ult_fila      = '0';
-				$agentes       = '0';
-				$escuelas      = '0';
-				$liquidaciones = '0';
-			}else{
-				$ult_fila      = $rs['fila'] + '1';
-				$agentes       = $rs['agentes'];
-				$escuelas      = $rs['escuelas'];
-				$liquidaciones = $rs['liquidaciones'];
-			}
-			$tramo = $ult_fila + '100';
+			$estado   = $rs['estado'];
+			$ult_fila = ($estado == 'Terminado') ? '0' : $rs['fila'] ;
+			//$tramo    = $ult_fila + '1000';
 			//var_dump($dbf_filas, $rs['fila'], $i, $tramo);
 			//exit;
+		/*<®> Array de Importaciones y Wheres<®>*/
+			$arr_imps = array(
+								'agentes' => array(
+													'docu' => 0, 
+													'cuil' => 1, 
+													'nom'  => 3, 
+													'sexo' => 4),
+								'zonas' => array(
+													'zona' => 5),
+								'areas' => array(
+													'area' => 33),
+								'planes' => array(
+													'plan' => 12),
+								'agrupaciones' => array(
+													'agru' => 19)
+								);
+			$arr_wres = array(
+								'agentes'      => array('docu'),
+								'zonas'        => array('zona'),
+								'areas'        => array('area'),
+								'planes'       => array('plan'),
+								'agrupaciones' => array('agru')
+							);
+			$arr_busc_ids = array(
+									'cargos' => array(
+													'idagru' => $arr_imps['agrupaciones']['agru']),
+								);
+			//var_dump($arr_imps, $arr_wres);
+			//exit;
 		/*<®> Importación <®>*/
-			//for ($i; $i<$dbf_filas and $i<$tramo; $i++){
-			for ($i=$ult_fila; $i<$dbf_filas and $i<=$tramo; $i++){
-				/*<®> Cargo la fila <®>*/
+			$t_ini = time();
+			$t=0;
+			for ($i=$ult_fila; $i<$dbf_filas and $t<=20; $i++){
+				//var_dump(time());
+				/*<®> Cargo la fila del dbf<®>*/
 					$dbf_reg = $dbf->getRow($i);
-				/*<®> Agentes <®>*/
-					/*<®> Verifico si ya está cargado <®>*/
-						$tbl = 'agentes';
-						$enc = 'docu';
-						if(!buscarReg($tbl, $enc, $dbf_reg[$cols[$tbl][$enc]])){
-							/*<®> Si el registro no está en la tabla lo importo <®>*/
-								/*<®> Armo la SQL <®>*/
-									$enc = '';
-									$dat = '';
-									foreach ($cols[$tbl] as $key => $val) {
-										$enc.= ",$key";
-										$dat.= ",'$dbf_reg[$val]'";
-									}
-									$enc = substr($enc,1);
-									$dat = substr($dat,1);
-								/*<®> Inserto el registro <®>*/
-									$sql = "INSERT INTO $tbl ( $enc ) VALUES ( $dat )";
-									ejecutar($sql);
-									$agentes = $agentes +'1';
+				foreach ($arr_imps as $tbl => $cols) {
+					/*<®> Armo el where para buscarlo en la BD<®>*/
+						$where = '';
+						foreach ($arr_wres[$tbl] as $col_tbl) {
+							$col_dbf = $cols[$col_tbl];
+							$where.= ",$col_tbl='$dbf_reg[$col_dbf]'";
 						}
+						$where = substr($where,1);
+						//var_dump($where);
+						//exit;
+					/*<®> Lo importo si no está cargado <®>*/
+						if (!buscarReg($tbl, $where)) {
+							/*<®> Armo las string de encabezados y datos para la sql<®>*/
+								$enc = '';
+								$dat = '';
+								foreach ($cols as $col_tbl => $col_dbf) {
+									$enc.= ",$col_tbl";
+									$dat.= ",'$dbf_reg[$col_dbf]'";
+								}
+								$enc = substr($enc,1);
+								$dat = substr($dat,1);
+							/*<®> Inserto el registro <®>*/
+								$sql = "INSERT INTO $tbl ( $enc ) VALUES ( $dat )";
+								ejecutar($sql);
+							/*<®> Dejo el registro en la BD <®>*/
+								$ult_fila = $i;
+								$sql = "UPDATE importaciones SET fila='$ult_fila' WHERE id = 1";
+								ejecutar($sql);
+						}
+				}
+				$t = time() - $t_ini;
 			}
-			$ult_fila = $i;		
-	}
-	/*<®> Verifico si llegó al final y lo registro en la BD<®>*/
-		$estado = ($i == $dbf_filas)? 'Terminado' : 'Importando';
-		$sql = "UPDATE 
-					importaciones 
-					SET 
-						estado        ='$estado',  
-						fila          ='$ult_fila',  
-						agentes       ='$agentes',  
-						escuelas      ='$escuelas',  
-						liquidaciones ='$liquidaciones'  
-					WHERE id = 1";
-		ejecutar($sql);
-	/*<®> Obtengo la datos desde donde quedó la importación <®>*/
-		$sql           = "SELECT * FROM importaciones WHERE id = 1";
-		$rs            = mysql_fetch_array(ejecutar($sql));
-		$ult_fila      = $rs['fila'];
-		$agentes       = $rs['agentes'];
-		$escuelas      = $rs['escuelas'];
-		$liquidaciones = $rs['liquidaciones'];
-		//Importados = 50
-		//En la BD   = 50
+			//exit;
+		/*<®> Verifico si llegó al final y lo registro en la BD<®>*/
+			$ult_fila = $i;
+			$estado = ($ult_fila >= $dbf_filas) ? 'Terminado' : 'Importando' ;
+			$sql = "UPDATE importaciones SET estado='$estado', fila='$ult_fila' WHERE id = 1";
+			ejecutar($sql);
 	/*<®> Muestro una tabla con los resultados <®>*/
 ?>
-		<table>
-			<tr>
-				<th align="center">Estado</th>
-				<th align="center">Fila</th>
-				<th align="center">Agentes</th>
-				<th align="center">Zonas</th>
-				<th align="center">Liquidaciones</th>
-			</tr>
-			<tr>
-				<td align="center">
-					<div id="imp_estado">
-						<?php echo $estado; ?>
-					</div>
-				</td>
-				<td align="center">
-					<?php echo $ult_fila; ?>
-				</td>
+	<table>
+		<tr>
+			<th align="center">Estado</th>
+			<th align="center">Fila</th>
+			<?php 
+				foreach ($arr_imps as $tbl => $cols) {
+			 ?>
+				<th align="center"><?php echo ucfirst($tbl); ?></th>
+			<?php 
+				} 
+			?>
+		</tr>
+		<tr>
+			<td align="center">
+				<div id="imp_estado">
+					<?php echo $estado; ?>
+				</div>
+			</td>
+			<td align="center">
+				<?php echo $ult_fila; ?>
+			</td>
+			<?php 
+				foreach ($arr_imps as $tbl => $cols) { 
+			?>
 				<td>
 					<div align="center">
-						<?php echo contarRegs('agentes'); ?>
+						<?php echo contarRegs($tbl); ?>
 					</div>
 				</td>
-				<td>
-					<div align="center">
-						<?php echo contarRegs('zonas'); ?>
-					</div>
-				</td>
-				<td>
-					<div align="center">
-						<?php echo "Importadas $liquidaciones"; ?>
-					</div>
-					<div align="center">En la BD<?php //echo contarRegs('liquidaciones'); ?></div>
-				</td>
-			</tr>
-		</table>
+			<?php 
+				} 
+			?>
+		</tr>
+	</table>
+<?php 
+	} 
+?>

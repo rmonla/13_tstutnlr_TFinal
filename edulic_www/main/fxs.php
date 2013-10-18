@@ -299,14 +299,13 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	/**
 	 * Función que retoran verdadero si encuentra un registro en una tabla.
 	 */
-	function buscarReg($tbl, $col, $id){
+	function buscarReg($tbl, $where){
 		/*<®> Sentencia SQL <®>*/
-			$sql = "SELECT * FROM $tbl WHERE $col=$id";
-			$rs = ejecutar($sql);
+			$sql = "SELECT * FROM $tbl WHERE $where";
 		/*<®> Verifico si se encontró el registro <®>*/
-			$res = mysql_num_rows($rs);
+			$res = mysql_num_rows(ejecutar($sql));
 		/*<®> Imprimo el resultado <®>*/
-			return ($res != 0)? true : false;
+			return ($res != 0);
 	}
 /*<®> fx contarRegs <®>*/
 	/**

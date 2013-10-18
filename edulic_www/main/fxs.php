@@ -198,8 +198,9 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		echo '<table summary="Summary Here" cellpadding="0" cellspacing="0">';
 		$encavezados = cargarColumnasDeTabla('importacion');
 		echo '<thead><tr>';
+		$i=0;
 		while($enc = mysql_fetch_array($encavezados))
-			echo '<th>'.$enc['Field'].'</th>';
+			echo "<th>".$enc['Field']." (".$i++.")</th>";
 		echo '</tr></thead><tbody>';
 		$TClass = 'light';
 		for($i=$desde; $i<$hasta; $i++){
@@ -289,7 +290,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	function obtenerRegDBF($arch_dbf, $id){
 		/*<®> includes <®>*/
 			include_once 'dbf_class.php';
-		/*<®> Instancio la calse <®>*/
+		/*<®> Instancio la clase <®>*/
 			$dbf      = new dbf_class($arch_dbf);
 		/*<®> Retorno el resultado <®>*/
 			return $dbf->getRow($id);

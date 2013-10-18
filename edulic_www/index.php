@@ -158,6 +158,7 @@
 							}
 						$dbf_filas = contFilasDBF($dbf_arch);
 						//$dbf_filas = '20';
+						mostrarDBF($path_dbfs.$dbf_arch, $desde ='0', $hasta = '10');
 			?>
 						<div id="container">
 							<div id="content">
@@ -166,34 +167,47 @@
 									<p>
 									<div id="botImpAgentes">
 										<input name="submit" type="submit" 
-										id="botImpAgentes" value="Importar Agentes"
-										onclick="importarDesdeDBF()" />
+										id="botImpAgentes" value="Importar"
+										onclick="importar()" />
 									&nbsp;
 									</div>
 									<table>
 										<tr>
-											<th>Archivo</th>
-											<th>Filas</th>
-											<th>Fila</th>
-											<th>Estado</th>
-											<th>Importados</th>
-											<th>Encontrados</th>
-											<th>Agentes</th>
+											<th align="center">Archivo</th>
+											<th align="center">Filas</th>
+											<th align="center">Importación</th>
 										</tr>
 										<tr>
-											<td><div id="dbf_arch"><?php echo "$dbf_arch"; ?></div></td>
-											<td><div id="dbf_filas"><?php echo "$dbf_filas"; ?></div></td>
-											<td><div id="dbf_fila">0</div></td>
-											<td><div id="dbf_estado">Iniciar</div></td>
-											<td><div id="dbf_importado">0</div></td>
-											<td><div id="dbf_encontrado">0</div></td>
-											<td><div id="cant_agentes">0</div></td>
+											<td><div id="dbf_arch" align="center"><?php echo "$dbf_arch"; ?></div></td>
+											<td><div id="dbf_filas" align="center"><?php echo "$dbf_filas"; ?></div></td>
+											<td>
+												<div id="importacion">
+													<table>
+														<tbody>
+															<tr>
+																<th align="center">Estado</th>
+																<th align="center">Fila</th>
+																<th align="center">Agentes</th>
+																<th align="center">Escuelas</th>
+																<th align="center">Liquidaciones</th>
+															</tr>
+															<tr>
+																<td align="center"><div id="imp_estado">Iniciar</div></td>
+																<td align="center">0</td>
+																<td><div><?php echo contarRegs('agentes'); ?> En la BD</div></td>
+																<td><div><?php //echo contarRegs('escuelas'); ?> En la BD</div></td>
+																<td><div><?php //echo contarRegs('liquidaciones'); ?> En la BD</div></td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</td>
 										</tr>
 									</table>	
 									<div id="botPru">
 										<input name="submit" type="submit" 
 										id="botImpAgentes" value="Pru"
-										onclick="contarRegs('agentes', 'cant_agentes')" />
+										onclick="alert(document.getElementById('imp_estado').innerHTML);" />
 									&nbsp;
 									</div>
 

@@ -15,7 +15,34 @@
 		<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
 		<script type="text/javascript" src="scripts/jquery-ui-1.7.2.custom.min.js"></script>
 		<script type="text/javascript" src="scripts/jquery.tabs.setup.js"></script>
+
+		<link rel="stylesheet" href="styles/nprogress.css" />
+		<script src="scripts/nprogress.js"></script>
 		<script type="text/javascript" src="main/fxs.js"></script>
+		<script>/*
+			function pbar1() {
+				var uf = alert(document.getElementById("ult_fila").innerHTML);
+				var fs = alert(document.getElementById("dbf_filas").innerHTML);
+				
+				if(uf == 0) uf = 1;
+				var p = (parseInt(uf) / parseInt(fs));
+				
+				if ( p < 0.99){
+					function() { NProgress.set(p); }
+				}else{
+					function() { 
+						NProgress.done();
+						NProgress.remove();
+					}
+				}
+				//NProgress.set(0.4);
+				//var e = document.getElementById("imp_estado").innerHTML;
+				
+				//NProgress.done();
+				//NProgress.start();
+				//NProgress.inc();
+			};*/
+		</script>
 	</head>
 	<body>
 		<div class="wrapper co10">
@@ -182,7 +209,15 @@
 											<td><div id="dbf_filas" align="center"><?php echo "$dbf_filas"; ?></div></td>
 											<td>
 												<?php  
-													$arr_tbls = array('agentes', 'zonas', 'areas', 'planes', 'agrupaciones');
+													$arr_tbls = array('agentes', 
+																			'zonas', 
+																			'areas', 
+																			'planes', 
+																			'agrupaciones', 
+																			'cargos',
+																			'escuelas',
+																			'liquidaciones'
+																			);
 												?>
 												<div id="importacion">	
 													<table>
@@ -198,7 +233,8 @@
 															<td align="center">
 																<div id="imp_estado">Iniciar</div>
 															</td>
-															<td align="center">0</td>
+															<!-- <td align="center"><div id="ult_fila">0</div></td> -->
+															<td align="center"><div id="ult_fila">0</div></td>
 															<?php foreach ($arr_tbls as $tbl) { ?>
 																<td>
 																	<div align="center"><?php echo contarRegs($tbl); ?></div>
@@ -208,6 +244,9 @@
 													</tbody>
 												</table>
 												</div>
+												<div id="pbar1">
+													
+												</div>												
 											</td>
 										</tr>
 									</table>	

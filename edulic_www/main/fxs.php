@@ -297,15 +297,24 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	}
 /*<®> fx buscarReg <®>*/
 	/**
-	 * Función que retoran verdadero si encuentra un registro en una tabla.
+	 * Función que retorna verdadero si encuentra un registro en una tabla.
 	 */
-	function buscarReg($tbl, $where){
+	function buscarReg($tbl, $where, $valcol = 'SinValor'){
 		/*<®> Sentencia SQL <®>*/
 			$sql = "SELECT * FROM $tbl WHERE $where";
 		/*<®> Verifico si se encontró el registro <®>*/
-			$res = mysql_num_rows(ejecutar($sql));
+			$reg = ejecutar($sql);
+			$res = mysql_num_rows($reg);
 		/*<®> Imprimo el resultado <®>*/
-			return ($res != 0);
+			if ($res != 0){
+				$res = mysql_fetch_array($reg);
+				$res = ($valcol != 'SinValor') ? $res[$valcol]: true; //Si me piden que retorne el valor de la columna lo retorno.
+			} else $res = false;
+				/*if($valcol != 'SinValor'){
+					var_dump($res[$valcol], $valcol);
+					exit;
+				}*/
+			return $res;
 	}
 /*<®> fx contarRegs <®>*/
 	/**

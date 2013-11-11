@@ -24,8 +24,14 @@
 					importarpadron()					
 				};
 			}
+			/*
 			xmlhttp.open("GET", "main/importarpadron.php?dbf=" + dbf + "&ult_fila=" + ult_fila, true);
 			xmlhttp.send();
+			*/
+      	xmlhttp.open("POST", "main/importarpadron.php");
+      	xmlhttp.setRequestHeader("Content-Type",
+                            "application/x-www-form-urlencoded");
+			xmlhttp.send("dbf=" + dbf + "&ult_fila=" + ult_fila);
 		}else{
 			alert("Importación terminada");
 			$('#progress_bar .ui-progress').animateProgress(100);

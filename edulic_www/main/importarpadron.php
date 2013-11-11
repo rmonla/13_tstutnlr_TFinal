@@ -7,15 +7,16 @@
 	include_once 'dbf_class.php';
 
 /*<®> Verificación Inicial <®>*/
-	if(!isset($_GET['dbf'], $_GET['ult_fila'])){
+//var_dump($_POST);
+	if(!isset($_POST['dbf'], $_POST['ult_fila'])){
 		echo "No se recibió correctamente los datos.";
 	}else{
 		/*<®> Variables <®>*/
-			$ult_fila = $_GET['ult_fila'];
-			$dbf_arch = $_GET['dbf'];
+			$ult_fila = $_POST['ult_fila'];
+			$dbf_arch = $_POST['dbf'];
 			$dbf_arch  = '../uploads/dbfs/'.$dbf_arch;
 		/* periodo */
-			$periodo = explode('.', $_GET['dbf']);
+			$periodo = explode('.', $_POST['dbf']);
 			$periodo = $periodo[0];
 		/*<®> Cargo el DBF <®>*/
 			$dbf       = new dbf_class($dbf_arch);

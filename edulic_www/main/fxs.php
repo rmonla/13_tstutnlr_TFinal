@@ -1,4 +1,5 @@
 <?php  
+
 /*<®> fx conexion <®>*/
 	/**
 	 * Función que retorna la conexion de la BD.
@@ -220,6 +221,20 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		}
 		echo '</tbody></table>';
 	}   
+/*<®> fx eliminarArchs <®>*/
+	/**
+	 * Función que elimina todo los archivos de una carpeta dada.
+	 */
+	function eliminarArchs($carpeta){
+		foreach(glob($carpeta . "/*") as $archivos_carpeta){
+			echo $archivos_carpeta;
+			if (is_dir($archivos_carpeta)){
+				eliminarDir($archivos_carpeta);
+			}else{
+				unlink($archivos_carpeta);
+			}
+		}
+	}
 /*<®> fx descomprimirArch <®>*/
 		/**
 		 * Función que descomprime el archivo enviado.
@@ -227,6 +242,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 	function descomprimirArch($zip_arch, $path_dest){
 		$path_orig = 'uploads/';
 		$zip_arch = $path_orig.$zip_arch;
+		eliminarArchs($path_dest);
 		//var_dump($zip_arch);
 	   //exit;
 		$zip = new ZipArchive;

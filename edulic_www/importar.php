@@ -1,6 +1,5 @@
 <?php  
 	include_once 'main/fxs.php';
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -26,7 +25,7 @@
 	</head>
 	<body>
 		<div class="wrapper co10">
-			<div id="topbar"><!-- ###### <barra superior> ###### -->
+			<div id="topbar">
 				<div id="slidepanel">
 					
 					<div class="topbox">
@@ -62,10 +61,10 @@
 						</li>
 					</ul>
 				</div><br class="clear">
-			</div><!-- ###### </barra superior> ###### -->
+			</div>
 		</div><!-- ####################################################################################################### -->
 		<div class="wrapper col1">
-			<div id="header"><!-- ###### <cabezera> ###### -->
+			<div id="header">
 				<div id="logo">
 					<h1>
 						<a href="#">EduLiq</a>
@@ -84,10 +83,10 @@
 						Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com
 					</p>
 				</div><br class="clear">
-			</div><!-- ###### </cabezera> ###### -->
+			</div>
 		</div><!-- ####################################################################################################### -->
 		<div class="wrapper col2">
-			<div id="topnav"><!-- ###### <barra navegación> ###### -->
+			<div id="topnav">
 				<ul>
 					<li class="">
 						<a href="index.php">Inicio</a>
@@ -106,11 +105,11 @@
 						</ul>
 					</li>
 				</ul>
-			</div><!-- ###### </barra navegación> ###### -->
+			</div>
 		</div>
 		<!-- ####################################################################################################### -->
 		<div class="wrapper col3">
-		  <div id="breadcrumb"><!-- ###### <Ud está aquí> ###### -->
+		  <div id="breadcrumb">
 		    <ul>
 		      <li class="first">You Are Here</li>
 		      <li>&#187;</li>
@@ -122,11 +121,11 @@
 		      <li>&#187;</li>
 		      <li class="current"><a href="#">Child</a></li>
 		    </ul>
-		  </div><!-- ###### </Ud está aquí> ###### -->
+		  </div>
 		</div>
 		<!-- ####################################################################################################### -->
-		<div class="wrapper col4">
-			<div id="container"><!-- ###### <contenido> ###### -->
+		<div class="wrapper col3">
+			<div id="container">
 				<div id="content">
 		      	<h2>Importación de Archivo DBF</h2>
 			      <div id="respond">
@@ -148,7 +147,7 @@
 						</form>
 			      </div>
 	   		</div>
-   		</div><!-- ###### </contenido> ###### -->
+   		</div>
 		      <br>
 			<div class="clear">
 			<?php  

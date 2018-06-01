@@ -1,6 +1,5 @@
-<?php  
-	include_once 'main/fxs.php';
-?>
+<?php include_once 'main/fxs.php'; ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
@@ -153,8 +152,7 @@
 			<?php  
 				$datos = array('10', '12');
 				
-				if(verificarArchivo())
-					{ 
+				if(verificarArchivo()){ 
 						$zip_arch = subirArchivo();
 						$path_dbfs = 'uploads/dbfs/';
 						if(descomprimirArch($zip_arch, $path_dbfs)){

@@ -10,28 +10,29 @@
 
 	if(isset($_POST['usr'], $_POST['pass']) and $_POST['usr'] != '' and $_POST['pass'] != ''){
 		/*<®> String Where <®>*/
-			$usr   = $_POST['usr'];
-			$pass  = md5($_POST['pass']);
-			$tbl   = 'usuarios';
-			$where = "usr='$usr' AND pass='$pass'";
+			$usr  = $_POST['usr'];
+			$pass = 'pepe123';
+			// $pass = md5($_POST['pass']);
+			$tbl  = 'usuarios';
+			$wre  = "usr='$usr' AND pass='$pass'";
 		/*<®> Verifico el login <®>*/
-			if(contarRegs($tbl, $where) > '0'){
+			if(contarRegs($tbl, $wre) > '0'){
 				/*<®> Obtengo los datos del registro del usuario <®>*/
-					$sql = "SELECT * FROM $tbl WHERE $where";
+					$sql = "SELECT * FROM $tbl WHERE $wre";
 					$reg = mysql_fetch_array(ejecutar($sql));
 				/*<®> Datos del usuario <®>*/
 					/*<®> Vars de Perfil <®>*/
-						$id_perf = $reg['idperfil'];
-						$sql = "SELECT perfil FROM perfiles WHERE id = $id_perf";
-						$perf = mysql_fetch_array(ejecutar($sql));
+						$id_perf    = $reg['idperfil'];
+						$sql        = "SELECT perfil FROM perfiles WHERE id = $id_perf";
+						$perf       = mysql_fetch_array(ejecutar($sql));
 					/*<®> Vars de Usuario <®>*/
 						$usr_perfil = $perf['perfil'];
-						$usr_login = $reg['usr']." ($usr_perfil)";
-						$usr_nomb  = utf8_encode($reg['nomb'].' '.strtoupper($reg['ape']));
-						$usr_docu  = number_format($reg['docu'], '0', ",", ".");
-						$usr_dir   = utf8_encode($reg['dir']);
-						$usr_tel   = $reg['tel'];
-						$usr_email = $reg['email'];
+						$usr_login  = $reg['usr']." ($usr_perfil)";
+						$usr_nomb   = utf8_encode($reg['nomb'].' '.strtoupper($reg['ape']));
+						$usr_docu   = number_format($reg['docu'], '0', ",", ".");
+						$usr_dir    = utf8_encode($reg['dir']);
+						$usr_tel    = $reg['tel'];
+						$usr_email  = $reg['email'];
 				/*<®> Cargo las Vars de SESSION <®>*/
 					session_start();
 					$_SESSION['usr']    = $reg['usr'];

@@ -17,7 +17,7 @@
 			$sql   = "SELECT * FROM perfiles WHERE id='$p'";
 			$reg_p = mysql_fetch_array(ejecutar($sql));
 		/*<®> Armo el mensaje de resultado <®>*/
-			$msj_tit = "Bienvenido $usr_nomb";
+			$msj_tit  = "Bienvenido $usr_nomb";
 			$msj_desc = "Ud. se ha logeado exitosamente en EduLiq.";
 ?>
 

@@ -61,10 +61,7 @@
 			<div style="text-align:right"><?php echo $usr_email; ?></div>
 			<!-- largo script del msj -->
 			<script type="text/javascript">
-				window.setTimeout(function(){
-						$('.loginbutton').click();
-					}, 1000);
-				
+				window.setTimeout(function(){ $('.loginbutton').click(); }, 1000);
 			</script>
 <?php break;
 		/*<®> No Logeado <®>*/

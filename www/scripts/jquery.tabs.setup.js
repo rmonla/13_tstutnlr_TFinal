@@ -3,5 +3,5 @@ $(function() {
 		fx: {
 			opacity: 'show'
 		}
-	}).tabs('rotate', 5000);
+	}).tabs('rotate', 8000);
 });

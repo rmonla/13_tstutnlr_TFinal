@@ -1,5 +1,7 @@
-<?php include_once 'main/fxs.php'; ?>
+<?php  
+	include_once 'main/fxs.php';
 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 	 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr"><head profile="http://gmpg.org/xfn/11">
@@ -29,7 +31,7 @@
 					<ul>
 						<li class="left">Login »</li>
 						<li class="right" id="toggle">
-							<a id="slideit" href="#slidepanel" style="display: block;">rmonla</a>
+							<a id="slideit" href="#slidepanel" style="display: block;">Abrir Panel</a>
 							<a id="closeit" style="display: none;" href="#slidepanel">Cerrar Panel</a>
 						</li>
 					</ul>
@@ -37,18 +39,14 @@
 			</div><!-- ###### </barra superior> ###### -->
 		</div><!-- ####################################################################################################### -->
 
-		<div class="wrapper col1">
+	<div class="wrapper col1">
 			<div id="header"><!-- ###### <cabezera> ###### -->
 				<div id="logo">
-					<h1>
-						<a href="#">EduLiq</a>
-					</h1>
-					<p>
-						Sistema Administrativo de Liquidaciones
-					</p>
-				</div>
-				
-				</div><br class="clear">
+					<h1 align="left"><a href="#">EduLiq</a> </h1>
+					<p align="left"> Sistema de Gestión de Novedades y</p>
+					<p align="left">Consulta de Liquidaciones</p>
+					</div>
+		  </div><br class="clear">
 			</div><!-- ###### </cabezera> ###### -->
 		</div><!-- ####################################################################################################### -->
 		<div class="wrapper col2">
@@ -84,7 +82,7 @@
 			          <span></span></a></li>
 			        <li class="ui-corner-top ui-state-default"><a href="#fc3">Junta Unica de Evaluación de Títulos y Antecedentes del Edu...<br>
 			          <span></span></a></li>
-			        <li class="last ui-corner-top ui-state-default"><a href="#fc4">Binarios<br>
+			        <li class="last ui-corner-top ui-state-default"><a href="#fc4">EduLiq<br>
 			          <span></span></a></li>
 			      </ul>
 			      <div id="featured_content">
@@ -114,7 +112,6 @@
 		<div class="wrapper col6">
 		  <div id="copyright">
 		    <p class="fl_left">Copyright © 2013 - Todos los derechos reservados</p>
-		    <p class="fl_right"><a href="pags/losbinarios.php" title="Binarios">Binarios</a></p>
 		    <br class="clear">
 		  </div>
 		</div>

@@ -4,12 +4,7 @@
 /*<®> Variables <®>*/
 	$p = $_SESSION['perfil'];
 /*<®> Obtengo de la BD los menus y opciones <®>*/
-	$sql = "SELECT mopciones.* FROM mo_perf WHERE idperfil=$p";
-	$sql = "SELECT mopciones.* 
-				FROM mo_perf 
-				INNER JOIN mopciones ON mopciones.id = idmopciones 
-				WHERE idperfil=$p";
-
+	$sql     = "SELECT idmopcion as mo FROM mo_perf WHERE idperfil=$p";
 	$rs_rel  = ejecutar($sql);
 	while ($reg_rel = mysql_fetch_array($rs_rel)){
 		$opc = $reg_rel['mo'];

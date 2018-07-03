@@ -1,67 +1,111 @@
 <?php  
 	include_once 'main/fxs.php';
 	
-	$lod_mod  = 'NoLogeado';
+	$log_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
 	
 	//var_dump($_POST['usr'] != '');
-	//var_dump($_POST['pass'] != '');
+	session_start();
+	//var_dump($_SESSION);
+	if (isset($_SESSION['usr_id'])) {
+		$usr_id = $_SESSION['usr_id'];
+		$log_mod  = 'Logeado';
+		/*<®> Obtengo los datos del registro del usuario <®>*/
+			$q = "SELECT u.*, p.perfil 
+					FROM usuarios u
+					INNER JOIN perfiles p ON p.id = u.idperfil
+					WHERE u.id = $usr_id";
+			$rg = mysql_fetch_array(ejecutar($q));
+		/*<®> Datos del usuario <®>*/
+			$usr_perfil = $rg['perfil'];
+			$usr_login = $rg['usr']." ($usr_perfil)";
+			$usr_nomb  = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
+			$usr_docu  = number_format($rg['docu'], '0', ",", ".");
+			$usr_dir   = utf8_encode($rg['dir']);
+			$usr_tel   = $rg['tel'];
+			$usr_email = $rg['email'];
+		/*<®> Cargo las Vars de SESSION <®>*/
+			$_SESSION['usr_id'] = $rg['id'];
+			$_SESSION['usr']    = $rg['usr'];
+			$_SESSION['perfil'] = $rg['idperfil'];
+	}
 
-	if(isset($_POST['usr'], $_POST['pass']) and $_POST['usr'] != '' and $_POST['pass'] != ''){
+	if(isset($_POST['usr'], $_POST['pass']) 
+		and $_POST['usr'] != '' 
+		and $_POST['pass'] != ''){
 		/*<®> String Where <®>*/
-			$usr  = $_POST['usr'];
-			$pass = 'pepe123';
-			// $pass = md5($_POST['pass']);
-			$tbl  = 'usuarios';
-			$wre  = "usr='$usr' AND pass='$pass'";
+			$usr   = $_POST['usr'];
+			$pass  = md5($_POST['pass']);
+			$tbl   = 'usuarios';
+			$where = "usr='$usr' AND pass='$pass'";
 		/*<®> Verifico el login <®>*/
-			if(contarRegs($tbl, $wre) > '0'){
+			if(contarRegs($tbl, $where) > '0'){
 				/*<®> Obtengo los datos del registro del usuario <®>*/
-					$sql = "SELECT * FROM $tbl WHERE $wre";
-					$reg = mysql_fetch_array(ejecutar($sql));
+					$q = "SELECT u.*, p.perfil 
+							FROM usuarios u
+							INNER JOIN perfiles p ON p.id = u.idperfil
+							WHERE $where";
+					$rg = mysql_fetch_array(ejecutar($q));
 				/*<®> Datos del usuario <®>*/
-					/*<®> Vars de Perfil <®>*/
-						$id_perf    = $reg['idperfil'];
-						$sql        = "SELECT perfil FROM perfiles WHERE id = $id_perf";
-						$perf       = mysql_fetch_array(ejecutar($sql));
-					/*<®> Vars de Usuario <®>*/
-						$usr_perfil = $perf['perfil'];
-						$usr_login  = $reg['usr']." ($usr_perfil)";
-						$usr_nomb   = utf8_encode($reg['nomb'].' '.strtoupper($reg['ape']));
-						$usr_docu   = number_format($reg['docu'], '0', ",", ".");
-						$usr_dir    = utf8_encode($reg['dir']);
-						$usr_tel    = $reg['tel'];
-						$usr_email  = $reg['email'];
+					$usr_perfil = $rg['perfil'];
+					$usr_login = $rg['usr']." ($usr_perfil)";
+					$usr_nomb  = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
+					$usr_docu  = number_format($rg['docu'], '0', ",", ".");
+					$usr_dir   = utf8_encode($rg['dir']);
+					$usr_tel   = $rg['tel'];
+					$usr_email = $rg['email'];
 				/*<®> Cargo las Vars de SESSION <®>*/
-					session_start();
-					$_SESSION['usr']    = $reg['usr'];
-					$_SESSION['perfil'] = $reg['idperfil'];
-					$lod_mod            = 'Logeado';
+					$_SESSION['usr_id'] = $rg['id'];
+					$_SESSION['usr']    = $rg['usr'];
+					$_SESSION['perfil'] = $rg['idperfil'];
+					$log_mod            = 'Logeado';
 					$msj_tit            = "Bienvenido $usr_nomb";
 					$msj_desc           = 'Ud. se ha logeado exitosamente en el sistema.';
+			
+					switch ($usr_perfil) {
+						case 'ADM':
+								header('location:index_adm.php');
+							break;
+						case 'LIQ':
+								header('location:index_liq.php');
+							break;
+						case 'SEC':
+								header('location:index_sec.php');
+							break;
+						
+						default:
+								header('location:index.php');
+							break;
+					}
 			}
 	}
-	//var_dump($lod_mod);
-	switch ($lod_mod) {
+	//var_dump($log_mod);
+	switch ($log_mod) {
 		/*<®> Login Normal <®>*/
 		case 'Logeado': ?>
 			<h2>Usuario en el Sistema</h2>
-			<div style="text-align:left">Nombre y Apellido:</div>
-			<h2><div style="text-align:right; font-style:italic"><?php echo $usr_nomb; ?></div></h2>
-			<div style="text-align:left">Usuario:</div>
-			<div style="text-align:right"><?php echo $usr_login; ?></div>
-			<div style="text-align:left">Documento:</div>
-			<div style="text-align:right"><?php echo $usr_docu; ?></div>
-			<div style="text-align:left">Dirección:</div>
-			<div style="text-align:right"><?php echo $usr_dir; ?></div>
-			<div style="text-align:left">Teléfono:</div>
-			<div style="text-align:right"><?php echo $usr_tel; ?></div>
-			<div style="text-align:left">E-Mail:</div>
-			<div style="text-align:right"><?php echo $usr_email; ?></div>
+			<form action="salir.php" method="post">
+				<div style="text-align:left">Nombre y Apellido:</div>
+				<h2><div style="text-align:right; font-style:italic"><?php echo $usr_nomb; ?></div></h2>
+				<div style="text-align:left">Usuario:</div>
+				<div style="text-align:right"><?php echo $usr_login; ?></div>
+				<div style="text-align:left">Documento:</div>
+				<div style="text-align:right"><?php echo $usr_docu; ?></div>
+				<div style="text-align:left">Dirección:</div>
+				<div style="text-align:right"><?php echo $usr_dir; ?></div>
+				<div style="text-align:left">Teléfono:</div>
+				<div style="text-align:right"><?php echo $usr_tel; ?></div>
+				<div style="text-align:left">E-Mail:</div>
+				<div style="text-align:right"><?php echo $usr_email; ?></div>
+				<input type="submit" value="Salir del Sistema">
+			</form>
 			<!-- largo script del msj -->
 			<script type="text/javascript">
-				window.setTimeout(function(){ $('.loginbutton').click(); }, 1000);
+				window.setTimeout(function(){
+						$('.loginbutton').click();
+					}, 1000);
+				
 			</script>
 <?php break;
 		/*<®> No Logeado <®>*/
@@ -77,7 +121,6 @@
 					<input type="password" name="pass" id="pass" value="">
 				</label> 
 				<p>
-					<input type="button" value="Entrar" class="ingresar">
 					<input type="submit" name="login" id="login" value="Ingresar"> &nbsp; 
 					<input type="reset" name="reset" id="reset" value="Reiniciar">
 				</p>
@@ -88,7 +131,7 @@
 		<br>
 <?php break;
 	} ?>
-	<input type="button" value="Cartel" class="loginbutton" data-type="zoomin">
+	<!-- <input type="button" value="Cartel" class="loginbutton" data-type="zoomin"> -->
 	<div class="overlay-container" style="display: none;">
 		<div class="msjlogin-container zoomin">
 			<center>

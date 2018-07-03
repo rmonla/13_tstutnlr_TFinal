@@ -8,14 +8,14 @@ Licence: <a href="http://www.os-templates.com/template-terms">Website Template L
 
 #featured_slide{
 	position:relative;
-	width:880px;
+	width:960px;
 	margin:0 auto;
-	/*padding:0px 0 0 0;*/
+	padding:20px 0 0 0;
 	}
 
 #featured_slide #featured_wrap{
 	position:relative;
-	width:880px;
+	width:940px;
 	height:290px;
 	padding:10px;
 	overflow:hidden;

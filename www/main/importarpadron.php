@@ -178,7 +178,7 @@
 									foreach ($tblscols[$tbl]['cols'] as $col) {
 										if (isset($dbfcolval[$col])){
 											$enc.= ",$col";
-											$dat.= ",'".utf8_encode($dbf_reg[$dbfcolval[$col]])."'";
+											$dat.= ",'".$dbf_reg[$dbfcolval[$col]]."'";
 										}
 									}
 									switch ($tbl) {

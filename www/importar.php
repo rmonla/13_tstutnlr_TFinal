@@ -23,51 +23,16 @@
 		<div class="wrapper co10">
 
 			<div id="topbar"><!-- ###### <barra superior> ###### -->
-				<div id="slidepanel">
-				<div class="box1">
-				<div class="topbox">
-					<h2>Login del Sistema</h2>
-					<form action="#" method="post">
-						<fieldset>
-							<legend>Formulario de Login</legend> 
-							<label for="usr">Usuario: 
-								<input type="text" name="usr" id="usr" value="">
-							</label> 
-							<label for="pass">Contraseña: 
-								<input type="password" name="pass" id="pass" value="">
-							</label> 
-							<p>
-								<input type="submit" name="login" id="login" value="Ingresar"> &nbsp; 
-								<input type="reset" name="reset" id="reset" value="Reiniciar">
-							</p>
-						</fieldset>
-					</form>
-				</div>
-					<br class="clear">
-				</div>
-		      <div class="topbox">
-					<input type="button" value="Zoom In Modal Window" class="loginbutton" data-type="zoomin" />
-					<div class="overlay-container">
-						<div class="msjlogin-container zoomin">
-							<center>
-								<div id="msjlogin">
-									<h3>Bienvenido Ricardo MONLA</h3> 
-									Ud. se ha logeado exitosamente en el sistema.<br/>
-									<br/>
-								</div>
-								<span class="loginclose" align="center">Cerrar</span>
-							</center>
-						</div>
-					</div>
-		      </div>
-					
-					<br class="clear">
+				<div id="slidepanel" style="display: none;">
+					<div id="login_res" class="topbox">
+						<?php include_once 'login.php'; ?>
+					</div><br class="clear">
 				</div>
 				<div id="loginpanel">
 					<ul>
 						<li class="left">Login »</li>
 						<li class="right" id="toggle">
-							<a id="slideit" href="#slidepanel">rmonla</a>
+							<a id="slideit" href="#slidepanel" style="display: block;">Abri Panel</a>
 							<a id="closeit" style="display: none;" href="#slidepanel">Cerrar Panel</a>
 						</li>
 					</ul>
@@ -78,22 +43,11 @@
 		<div class="wrapper col1">
 			<div id="header"><!-- ###### <cabezera> ###### -->
 				<div id="logo">
-					<h1>
-						<a href="#">EduLiq</a>
-					</h1>
-					<p>
-						Sistema Administrativo de Liquidaciones
-					</p>
-				</div>
+					<h1 align="left"><a href="#">EduLiq</a> </h1>
+					<p align="left"> Sistema de Gestión de Novedades y</p>
+					<p align="left">Consulta de Liquidaciones</p>
+					</div>
 				<div class="fl_right">
-					<ul>
-						<li class="last"><a href="#">Search</a></li>
-						<li><a href="#">Online Support</a></li>
-						<li><a href="#">School Board</a></li>
-					</ul>
-					<p>
-						Tel: xxxxx xxxxxxxxxx | Mail: info@domain.com
-					</p>
 				</div><br class="clear">
 			</div><!-- ###### </cabezera> ###### -->
 		</div><!-- ####################################################################################################### -->
@@ -101,7 +55,7 @@
 			<div id="topnav"><!-- ###### <barra navegación> ###### -->
 				<ul>
 					<li id="MInicio" class="">
-						<a href="index.php">Inicio</a>
+						<a href="index_adm.php">Inicio</a>
 <!-- 						<ul>
 							<li class="last">
 								<a href="#">Cargar liquidaciones</a>
@@ -109,70 +63,47 @@
 						</ul>
  -->					</li>
 					<li id="Novedades" class="">
-						<a href="#Novedades">Novedades</a>
+						<a href="novedades.php">Novedades</a>
 						<ul>
 							<li>
-								<a href="#">Importación</a>
+								<a href="importar.php">Importación</a>
 							</li>
 							<li>
-								<a href="#">Exportacíon</a>
+								<a href="exportar.php">Exportacíon</a>
 							</li>
 							<li>
-								<a href="#">Usuarios</a>
+								<a href="usuarios.php">Usuarios</a>
 							</li>
-							<li class="last">
-								<a href="#">Perfiles</a>
-							</li>
+
 						</ul>
 					</li>
 					<li id="#Consultas" class="">
-						<a href="#Consultas">Consultas</a>
+						<a href="consulta.php">Consultas</a>
 						<ul>
 							<li>
-								<a href="#">Importación</a>
+								<a href="importar.php">Importación</a>
 							</li>
 							<li>
-								<a href="#">Exportacíon</a>
+								<a href="exportar.php">Exportacíon</a>
 							</li>
 							<li>
-								<a href="#">Usuarios</a>
+								<a href="usuarios.php">Usuarios</a>
 							</li>
-							<li class="last">
-								<a href="#">Perfiles</a>
-							</li>
+
 						</ul>
 					</li>
-					<li id="#Reportes" class="">
-						<a href="#Reportes">Reportes</a>
-						<ul>
-							<li>
-								<a href="#">Importación</a>
-							</li>
-							<li>
-								<a href="#">Exportacíon</a>
-							</li>
-							<li>
-								<a href="#">Usuarios</a>
-							</li>
-							<li class="last">
-								<a href="#">Perfiles</a>
-							</li>
-						</ul>
-					</li>
+				
 					<li id="#Administración" class="active">
-						<a href="#Administración">Administración</a>
+						<a href="importar.php">Administración</a>
 						<ul>
 							<li>
-								<a href="#">Importación</a>
+								<a href="importar.php">Importación</a>
 							</li>
 							<li>
-								<a href="#">Exportacíon</a>
+								<a href="exportar.php">Exportacíon</a>
 							</li>
 							<li>
-								<a href="#">Usuarios</a>
-							</li>
-							<li class="last">
-								<a href="#">Perfiles</a>
+								<a href="usuarios.php">Usuarios</a>
 							</li>
 						</ul>
 					</li>
@@ -182,17 +113,6 @@
 		<!-- ####################################################################################################### -->
 		<div class="wrapper col3">
 		  <div id="breadcrumb"><!-- ###### <Ud está aquí> ###### -->
-		    <ul>
-		      <li class="first">You Are Here</li>
-		      <li>&#187;</li>
-		      <li><a href="#">Home</a></li>
-		      <li>&#187;</li>
-		      <li><a href="#">Grand Parent</a></li>
-		      <li>&#187;</li>
-		      <li><a href="#">Parent</a></li>
-		      <li>&#187;</li>
-		      <li class="current"><a href="#">Child</a></li>
-		    </ul>
 		  </div><!-- ###### </Ud está aquí> ###### -->
 		</div>
 		<!-- ####################################################################################################### -->

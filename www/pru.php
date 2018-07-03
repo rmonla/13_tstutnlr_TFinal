@@ -7,11 +7,11 @@
 
 	//var_dump($r= $var1 == $var2);
 	
-	//$str = "123456";
-   //$encriptada = md5($str);
-   //echo $encriptada."<br>";
-   //echo strlen($encriptada);
-   //var_dump($encriptada);	
+	$str = "123456";
+   $encriptada = md5($str);
+  echo $encriptada."<br>";
+   echo strlen($encriptada);
+   var_dump($encriptada);	
 ////////////////////////////////
 ///
 ///
@@ -23,11 +23,9 @@
 	//$periodo = '201311';
 	$periodo = '201311';
 	//$docu    = '27849467'; //Yanina
-	$docu    = '22703174'; //otro
-	
+	$docu    = '10020152'; //otro
 	echo "Situaci&oacute;n de Revista <br>";
 	var_dump(situacionAgente($docu, $periodo));
-	
 	echo "Hist&oacute;rico <br>";
 	var_dump(situacionAgente($docu));
 

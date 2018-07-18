@@ -36,9 +36,10 @@
    *     Agrega index.php usando el archivo index_adm.php .
    *     Crea carpeta _inc para agregar los archivos de main y librerías.
    *     Reemplaza include_once '_inc/fxs.php' por include_once '_inc/fxs.php' en los archivos.
-   *     
    * v_1.2.5 
    *     Crea carpeta _css para agregar los archivos de estilos css.
+   *     Reemplaza href="_css/layout.css" por href="_css/layout.css" en los archivos.
+   * v_1.2.6 Crea carpeta _ups/dbfs donde se van a subir los archivos dbfs.
    *     Reemplaza href="_css/layout.css" por href="_css/layout.css" en los archivos.
    *     
    *   

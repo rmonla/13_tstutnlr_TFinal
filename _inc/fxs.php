@@ -290,7 +290,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		 * Función que descomprime el archivo enviado.
 		 */
 	function descomprimirArch($zip_arch, $path_dest){
-		$path_orig = 'uploads/';
+		$path_orig = '_ups/';
 		$zip_arch = $path_orig.$zip_arch;
 		eliminarArchs($path_dest);
 		//var_dump($zip_arch);
@@ -340,7 +340,7 @@ function msj($msj = '', $tipo = 'ERROR', $retorno = ''){
 		/*<®> includes <®>*/
 			include_once 'dbf_class.php';
 		/*<®> Variables <®>*/
-			$dbf_path = 'uploads/dbfs/';
+			$dbf_path = '_ups/dbfs/';
 			$file = $dbf_path.$arch_dbf;
 
 			//var_dump($file);

@@ -1,5 +1,7 @@
 <?php
-include_once 'main/fxs.php';
+
+
+include_once '_inc/fxs.php';
 //get the q parameter from URL
 $q=$_GET["q"];
 $items = '';

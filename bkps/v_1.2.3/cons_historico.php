@@ -1,5 +1,5 @@
-<?php  
-	include_once 'main/fxs.php';
+<?php include_once '_inc/fxs.php';
+
 	
 	$error="";
 	if(isset($_GET['error']) and ($_GET['error']==1))

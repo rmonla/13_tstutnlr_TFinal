@@ -1,5 +1,4 @@
-<?php
-   include_once 'main/fxs.php';
+<?php include_once '_inc/fxs.php';
   
   	  $perfil     = $_POST['perfil'];
       $usr	   	  = $_POST['usr'];

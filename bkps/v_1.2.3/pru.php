@@ -1,5 +1,5 @@
-<?php  
-	include_once 'main/fxs.php';
+<?php include_once '_inc/fxs.php';
+
 	//var_dump(arrNomCols('h'));
 
 	//$var1 = '000';

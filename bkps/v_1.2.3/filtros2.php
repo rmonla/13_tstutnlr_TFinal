@@ -1,5 +1,5 @@
-<?php  
-	include_once 'main/fxs.php';
+<?php include_once '_inc/fxs.php';
+
 	
 	if(isset($_POST['filtro']))
 		$filtro = $_POST['filtro'];

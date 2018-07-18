@@ -1,5 +1,7 @@
 <?php
-include_once 'main/fxs.php';
+
+
+include_once '_inc/fxs.php';
 
 $mes='';
 $anio='';

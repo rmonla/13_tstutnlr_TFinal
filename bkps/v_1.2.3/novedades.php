@@ -1,6 +1,8 @@
 <?php  
 	/*<®> Includes <®>*/
-		include_once 'main/fxs.php';
+		
+
+include_once '_inc/fxs.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

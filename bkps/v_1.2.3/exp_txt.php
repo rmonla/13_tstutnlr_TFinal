@@ -7,7 +7,9 @@
 
 <body>
 <?php
-		include_once 'main/fxs.php';
+		
+
+include_once '_inc/fxs.php';
 		
 		  if(isset($_POST['periodo']))
 		  	$per = $_POST['periodo'];

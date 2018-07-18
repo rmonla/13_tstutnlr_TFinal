@@ -32,9 +32,12 @@
 	 * v_1.2.1 Inicia de actualización del sistema.
 	 * v_1.2.2 Se agrega _appVer.php para el detalle de versiones.
 	 * v_1.2.3 Mueve todos los archivos a bkps/v_1.2.3 para empezar a traer solo los que se usan.
-	 * v_1.2.4
-	 * 		Agrega carpeta _inc para incluir los php y librerías.
-	 * 		Reemplaza include_once 'main/fxs.php' por include_once '_inc/fxs.php'
+	 * v_1.2.4 
+	 * 		Agrega index.php usando el archivo index_adm.php .
+	 * 		Crea carpeta _inc para agregar los archivos de main y librerías.
+	 * 		Reemplaza include_once '_inc/fxs.php' por include_once '_inc/fxs.php' en los archivos.
+	 * 		
+	 * 	
 	 *
 	 * 
 	 */

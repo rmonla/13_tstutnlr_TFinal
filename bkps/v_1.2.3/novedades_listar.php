@@ -1,6 +1,8 @@
 <?php  
 	/*<®> Includes <®>*/
-		include_once 'main/fxs.php';
+		
+
+include_once '_inc/fxs.php';
 	/*<®> Variables <®>*/
 		if(isset($_SESSION['usr_id'])){
 			$usr_id = $_SESSION['usr_id'];

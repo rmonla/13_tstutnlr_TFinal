@@ -1,5 +1,5 @@
-<?php  
-	include_once 'main/fxs.php';
+<?php include_once '_inc/fxs.php';
+
 	
 	$lod_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';

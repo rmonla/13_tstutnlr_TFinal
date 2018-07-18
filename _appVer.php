@@ -30,6 +30,8 @@
 	 * @copyright 2018 - 2018 Ricardo MONLA
 	 * 
 	 * v_1.2.1 Inicia de actualización del sistema.
+	 * v_1.2.2 Se agrega _appVer.php para el detalle de versiones.
+	 * v_1.2.3 Mueve todos los archivos a bkps/v_1.2.3 para empezar a traer solo los que se usan.
 	 *
 	 * 
 	 */

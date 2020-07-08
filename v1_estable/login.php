@@ -5,8 +5,9 @@
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
 	
-	//var_dump($_POST['usr'] != '');
-	//var_dump($_POST['pass'] != '');
+	echo "<p>Entrando</p>";
+	// var_dump($_POST['usr'] != '');
+	// var_dump($_POST['pass'] != '');
 
 	if(isset($_POST['usr'], $_POST['pass']) and $_POST['usr'] != '' and $_POST['pass'] != ''){
 		/*<®> String Where <®>*/

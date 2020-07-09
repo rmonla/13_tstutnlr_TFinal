@@ -1,5 +1,5 @@
 <?php  
-	include_once 'main/fxs.php';
+	include_once '_main/fxs.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -24,7 +24,7 @@
 			<div id="topbar"><!-- ###### <barra superior> ###### -->
 				<div id="slidepanel" style="display: none;">
 					<div id="login_res" class="topbox">
-						<?php include_once 'login.php'; ?>
+						<?php include_once '_pgs/login/login.php'; ?>
 					</div><br class="clear">
 				</div>
 				<div id="loginpanel">

@@ -2,9 +2,9 @@
 
 /*<®> Variables de conexion. <®>*/
 	$dtsBD = [
-		"cols"               => ['usr',              'pass',      'base'          ],
+		"cols"               => ['usr',              'pass',      'base'            ],
 		"mysql.hostinger.es" => ['u138934575_edliq', '$02rmonla', 'u138934575_edliq'],
-		"localhost"          => ['root',             'lhsurnm',   'eduliq_v1_200708'          ]
+		"localhost"          => ['root',             'lhsurnm',   'eduliq_v2_200708']
 	];	
 
 	$appHost = $_SERVER['HTTP_HOST'];

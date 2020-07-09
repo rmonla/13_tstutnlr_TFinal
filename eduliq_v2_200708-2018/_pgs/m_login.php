@@ -3,7 +3,6 @@
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 	function appSession($estado = 0){
 		if (!$estado) {
 			session_unset();
@@ -94,8 +93,6 @@
 =======
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 	$log_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
@@ -173,9 +170,6 @@
 								header('location:index.php');
 							break;
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
@@ -184,7 +178,6 @@
 	} else {
 		$lModo  = 'Deslogeado';
 	}
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 	
@@ -225,8 +218,6 @@ HTML;
 =======
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 	//var_dump($log_mod);
 	switch ($log_mod) {
 		/*<®> Login Normal <®>*/
@@ -261,9 +252,6 @@ HTML;
 		<form action="#" method="post">
 			<fieldset>
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
@@ -278,7 +266,6 @@ HTML;
 					<input type="submit" name="boton" value="Ingresar">
 					<input type="hidden" name="login" id="login" value="log-in">
 				</p>
-<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 HTML;
@@ -306,8 +293,6 @@ HTML;
 =======
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 			</fieldset>
 		</form>
 		<br>
@@ -316,9 +301,6 @@ HTML;
 <?php break;
 	} ?>
 <<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 =======
 >>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels

@@ -1,5 +1,5 @@
 <?php  
-	include_once 'main/fxs.php';
+	include_once '../_main/fxs.php';
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

@@ -24,7 +24,7 @@
 			<div id="topbar"><!-- ###### <barra superior> ###### -->
 				<div id="slidepanel" style="display: none;">
 					<div id="login_res" class="topbox">
-						<?php include_once '_pgs/login/login.php'; ?>
+						<?php include_once '_pgs/m_login.php'; ?>
 					</div><br class="clear">
 				</div>
 				<div id="loginpanel">

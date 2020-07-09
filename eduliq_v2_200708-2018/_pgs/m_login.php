@@ -1,5 +1,5 @@
 <?php  
-	include_once '../../_main/fxs.php';
+	include_once '_main/fxs.php';
 	
 	$log_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
@@ -9,14 +9,14 @@
 	session_start();
 	//var_dump($_SESSION);
 	if (isset($_SESSION['usr_id'])) {
-		$usr_id = $_SESSION['usr_id'];
-		$log_mod  = 'Logeado';
+		$usr_id  = $_SESSION['usr_id'];
+		$log_mod = 'Logeado';
 		/*<®> Obtengo los datos del registro del usuario <®>*/
 			$q = "SELECT u.*, p.perfil 
 					FROM usuarios u
 					INNER JOIN perfiles p ON p.id = u.idperfil
 					WHERE u.id = $usr_id";
-			$rg = mysql_fetch_array(ejecutar($q));
+			$rg = mysqli_fetch_array(ejecutar($q));
 		/*<®> Datos del usuario <®>*/
 			$usr_perfil = $rg['perfil'];
 			$usr_login = $rg['usr']." ($usr_perfil)";
@@ -46,7 +46,7 @@
 							FROM usuarios u
 							INNER JOIN perfiles p ON p.id = u.idperfil
 							WHERE $where";
-					$rg = mysql_fetch_array(ejecutar($q));
+					$rg = mysqli_fetch_array(ejecutar($q));
 				/*<®> Datos del usuario <®>*/
 					$usr_perfil = $rg['perfil'];
 					$usr_login = $rg['usr']." ($usr_perfil)";
@@ -65,7 +65,7 @@
 			
 					switch ($usr_perfil) {
 						case 'ADM':
-								header('location:index_adm.php');
+								header('location:_pgs/p_adm.php');
 							break;
 						case 'LIQ':
 								header('location:index_liq.php');

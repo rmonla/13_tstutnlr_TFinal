@@ -10,12 +10,12 @@
 		</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="imagetoolbar" content="no">
-		<link rel="stylesheet" href="styles/layout.css" type="text/css">
-		<script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
-		<script type="text/javascript" src="scripts/jquery.slidepanel.setup.js"></script>
-		<script type="text/javascript" src="scripts/jquery-ui-1.7.2.custom.min.js"></script>
-		<script type="text/javascript" src="scripts/jquery.tabs.setup.js"></script>
-		<script type="text/javascript" src="main/fxs.js"></script>
+		<link   type="text/css"       href="../_css/layout.css" rel="stylesheet">
+		<script type="text/javascript" src="../_jss/jquery-1.4.1.min.js"></script>
+		<script type="text/javascript" src="../_jss/jquery.slidepanel.setup.js"></script>
+		<script type="text/javascript" src="../_jss/jquery-ui-1.7.2.custom.min.js"></script>
+		<script type="text/javascript" src="../_jss/jquery.tabs.setup.js"></script>
+		<script type="text/javascript" src="../_jss/fxs.js"></script>
 	</head>
 	<body>
 

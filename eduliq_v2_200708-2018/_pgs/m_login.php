@@ -1,8 +1,6 @@
 <?php  
 	include_once '_main/fxs.php';
 	
-<<<<<<< HEAD
-<<<<<<< HEAD
 	function appSession($estado = 0){
 		if (!$estado) {
 			session_unset();
@@ -90,9 +88,6 @@
 						$lModo = 'Logeado';
 						$mTitu = "Bienvenido $uNomb";
 						$mDesc = 'Ud. se ha logeado exitosamente en el sistema.';
-=======
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 	$log_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
@@ -169,18 +164,11 @@
 						default:
 								header('location:index.php');
 							break;
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 					}
 			}
 	} else {
 		$lModo  = 'Deslogeado';
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-	
 
 	
 	/* Logeandose */
@@ -215,9 +203,6 @@ HTML;
 		
 		default:
 			$hLabels = <<<HTML
-=======
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 	//var_dump($log_mod);
 	switch ($log_mod) {
 		/*<®> Login Normal <®>*/
@@ -251,10 +236,6 @@ HTML;
 		<h2>Login del Sistema</h2>
 		<form action="#" method="post">
 			<fieldset>
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 				<legend>Formulario de Login</legend> 
 				<label for="usr">Usuario: 
 					<input type="text" name="usr" id="usr" value="">
@@ -266,8 +247,6 @@ HTML;
 					<input type="submit" name="boton" value="Ingresar">
 					<input type="hidden" name="login" id="login" value="log-in">
 				</p>
-<<<<<<< HEAD
-<<<<<<< HEAD
 HTML;
 			break;
 		}
@@ -290,9 +269,6 @@ HTML;
 				}, 1000);
 			
 		</script>
-=======
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 			</fieldset>
 		</form>
 		<br>
@@ -300,10 +276,6 @@ HTML;
 		<br>
 <?php break;
 	} ?>
-<<<<<<< HEAD
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
-=======
->>>>>>> parent of 310524e... Login: Re-codoficación ahora Fields y Labels
 	<!-- <input type="button" value="Cartel" class="loginbutton" data-type="zoomin"> -->
 	<div class="overlay-container" style="display: none;">
 		<div class="msjlogin-container zoomin">

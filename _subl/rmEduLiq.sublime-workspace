@@ -4,8 +4,20 @@
 		"selected_items":
 		[
 			[
+				"el",
+				"elseif\telseif …"
+			],
+			[
 				"if",
 				"ifelse\tif … else …"
+			],
+			[
+				"log",
+				"log_mod"
+			],
+			[
+				"lo",
+				"log_mod"
 			],
 			[
 				"loca",
@@ -36,6 +48,10 @@
 				"Toggle Comment"
 			],
 			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
 				"java",
 				"Set Syntax: JavaScript"
 			],
@@ -64,10 +80,23 @@
 	},
 	"expanded_folders":
 	[
-		"/home/rmonla/Documentos/GitHub/rmEdulic"
+		"/home/rmonla/Documentos/GitHub/rmEdulic",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/_vers",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_css",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs"
 	],
 	"file_history":
 	[
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/m_login.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/index.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/p_adm.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_css/layout.css",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/m_login/login.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/login/login.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_main/fxs.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_main/fxsBD.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/_subl/rmEduLiq.sublime-project",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/_vers/rmEduliq_v1_200708_estable/main/fxsBD.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/v1_estable/main/fxsBD.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/v1_estable/login.php",
@@ -80,7 +109,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 45.0
 	},
 	"find_in_files":
 	{
@@ -94,6 +123,50 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"name",
+			" name=\"login\"",
+			"name=\"login\"",
+			"appSession(",
+			"appSession",
+			"$msj_desc",
+			"$msj_tit",
+			"$lModo",
+			"$log_mod",
+			"; ?",
+			"<?php echo ",
+			"><",
+			"Usuario",
+			"; ?",
+			"<?php echo ",
+			"$_SESSION['uIDE']",
+			"$_SESSION['uID']",
+			"$usr_id",
+			"$_SESSION['perfil']",
+			"$_SESSION['usr']",
+			"$usrMail",
+			"$usrTele",
+			"$usrDire",
+			"$usrDocu",
+			"$usrNomb",
+			"$usrLogi",
+			"$usrPerf",
+			"$_SESSION['usrID']",
+			"$_SESSION['usr_id']",
+			"$usr_email",
+			"$usr_tel",
+			"$usr_dir",
+			"$usr_docu",
+			"$usr_nomb",
+			"$usr_log",
+			"$usr_perf",
+			"$usr_login",
+			"$usr_perfil",
+			"usr_perfil",
+			"../",
+			"scripts/",
+			"mysqli_fetch_array",
+			"mysql_fetch_array",
+			".php"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -118,11 +191,11 @@
 	],
 	"incremental_find":
 	{
-		"height": 26.0
+		"height": 33.0
 	},
 	"input":
 	{
-		"height": 38.0
+		"height": 45.0
 	},
 	"layout":
 	{
@@ -155,7 +228,7 @@
 	"project": "rmEduLiq.sublime-project",
 	"replace":
 	{
-		"height": 48.0
+		"height": 62.0
 	},
 	"save_all_on_build": true,
 	"select_file":

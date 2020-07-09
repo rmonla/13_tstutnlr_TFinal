@@ -8,104 +8,96 @@
 		} else session_start();
 	}
 
-	$log_mod  = 'NoLogeado';
-	$hTIT     = 'Login del Sistema';
-	$msj_tit  = 'Bienvenido al sistema EduLiq';
-	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
+	$lModo = 'NoLogeado';
+	$mTitu = 'Bienvenido al sistema EduLiq';
+	$mDesc = 'Sistema Administrativo de Liquidaciones.';
 	
-	//var_dump($_POST['usr'] != '');
-	//var_dump($_SESSION);
 
-	//appSession(1);
-
-	if (isset($_SESSION['uIDE'])) {
+	// if (isset($_SESSION['uIDE'])) { /* Logeado */
 		
-		$uID  = $_SESSION['uIDE'];
+	// 	$lModo = 'Logeado';
 		
-		$log_mod = 'Logeado';
+	// 	$uID  = $_SESSION['uIDE'];
 		
-		/*<®> Obtengo los datos del usuario <®>*/
-			$q = "SELECT u.*, p.perfil 
-					FROM usuarios u
-					INNER JOIN perfiles p ON p.id = u.idperfil
-					WHERE u.id = $uID";
-			$rg = mysqli_fetch_array(ejecutar($q));
+	// 	/*<®> Obtengo los datos del usuario <®>*/
+	// 		$q = "SELECT u.*, p.perfil 
+	// 				FROM usuarios u
+	// 				INNER JOIN perfiles p ON p.id = u.idperfil
+	// 				WHERE u.id = $uID";
+	// 		$rg = mysqli_fetch_array(ejecutar($q));
 
-		/*<®> Datos del usuario <®>*/
-			$uPerf = $rg['perfil'];
-			$uLogi = $rg['usr']." ($uPerf)";
-			$uNomb = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
-			$uDocu = number_format($rg['docu'], '0', ",", ".");
-			$uDire = utf8_encode($rg['dir']);
-			$uTele = $rg['tel'];
-			$uMail = $rg['email'];
+	// 	/*<®> Datos del usuario <®>*/
+	// 		$uPerf = $rg['perfil'];
+	// 		$uLogi = $rg['usr']." ($uPerf)";
+	// 		$uNomb = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
+	// 		$uDocu = number_format($rg['docu'], '0', ",", ".");
+	// 		$uDire = utf8_encode($rg['dir']);
+	// 		$uTele = $rg['tel'];
+	// 		$uMail = $rg['email'];
 
-		/*<®> Cargo las Vars de SESSION <®>*/
-			$_SESSION['uIDE'] = $rg['id'];
-			$_SESSION['uUSR'] = $rg['usr'];
-			$_SESSION['uPER'] = $rg['idperfil'];
-	}
+	// 	/*<®> Cargo las Vars de SESSION <®>*/
+	// 		$_SESSION['uIDE'] = $rg['id'];
+	// 		$_SESSION['uUSR'] = $rg['usr'];
+	// 		$_SESSION['uPER'] = $rg['idperfil'];
+	
+	// } else
 
-	if(isset($_POST['usr'], $_POST['pass']) 
-		and $_POST['usr'] != '' 
-		and $_POST['pass'] != ''){
+	/* DesdeForm */
 
-		/*<®> String Where <®>*/
-			$usr   = $_POST['usr'];
-			$pass  = md5($_POST['pass']);
-			$tbl   = 'usuarios';
-			$where = "usr='$usr' AND pass='$pass'";
 
-		/*<®> Verifico el login <®>*/
-			if(contarRegs($tbl, $where) > '0'){
-				/*<®> Obtengo los datos del registro del usuario <®>*/
-					$q  = "SELECT u.*, p.perfil 
-							FROM usuarios u
-							INNER JOIN perfiles p ON p.id = u.idperfil
-							WHERE $where";
-					$rg = mysqli_fetch_array(ejecutar($q));
+	/*<®> Deslogeado <®>*/
+		//appSession(0);
 
-				/*<®> Datos del usuario <®>*/
-					$uPerf = $rg['perfil'];
-					$uLogi = $rg['usr']." ($uPerf)";
-					$uNomb = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
-					$uDocu = number_format($rg['docu'], '0', ",", ".");
-					$uDire = utf8_encode($rg['dir']);
-					$uTele = $rg['tel'];
-					$uMail = $rg['email'];
-
-				/*<®> Cargo las Vars de SESSION <®>*/
-					appSession(1);
-					$_SESSION['uIDE'] = $rg['id'];
-					$_SESSION['uUSR'] = $rg['usr'];
-					$_SESSION['uPER'] = $rg['idperfil'];
-					$log_mod  = 'Logeado';
-					$hTIT     = 'Usuario en el Sistema';
-					$msj_tit  = "Bienvenido $uNomb";
-					$msj_desc = 'Ud. se ha logeado exitosamente en el sistema.';
-			
+	if (isset($_POST['login'])) {
+		if (!$_POST['login'] == 'log-in') {
+			$lModo  = 'Deslogear';
+			appSession();
+		} elseif ($_POST['usr'] = '' || $_POST['pass'] = '') {
+			$lModo  = 'FaltanDatos';
+		} else {
+			$lModo  = 'Verificando';
+			/*<®> String Where <®>*/
+				$usr   = $_POST['usr'];
+				$pass  = md5($_POST['pass']);
+				$tbl   = 'ususrios';
+				$where = "usr='$usr' AND pass='$pass'";
+			/*<®> Verifico los Datos <®>*/
+				if(!contarRegs($tbl, $where)){
+					$lModo  = 'NoVerifica';
+				} else {
+					/*<®> Obtengo los datos de la base <®>*/
+						$q  = "SELECT u.*, p.perfil 
+								FROM $tbl u
+								INNER JOIN perfiles p ON p.id = u.idperfil
+								WHERE $where";
+						$rg = mysqli_fetch_array(ejecutar($q));
+					/*<®> Cargo los Datos <®>*/
+						$uPerf = $rg['perfil'];
+						$uLogi = $rg['usr']." ($uPerf)";
+						$uNomb = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
+						$uDocu = number_format($rg['docu'], '0', ",", ".");
+						$uDire = utf8_encode($rg['dir']);
+						$uTele = $rg['tel'];
+						$uMail = $rg['email'];
+					/*<®> Cargo la SESSION <®>*/
+						appSession(1);
+						$_SESSION['uIDE'] = $rg['id'];
+						$_SESSION['uUSR'] = $rg['usr'];
+						$_SESSION['uPER'] = $rg['idperfil'];
+					/*<®> Cargo el Modo <®>*/
+						$lModo = 'Logeado';
+						$mTitu = "Bienvenido $uNomb";
+						$mDesc = 'Ud. se ha logeado exitosamente en el sistema.';
+					}
 			}
+	} else {
+		$lModo  = 'Deslogeado';
 	}
+	
 
-	$dtsLog = [
-		'cols' => [
-			'hTIT', 
-			'mTIT', 
-			'mDESC'
-			],
-		'NoLogeado' => [
-			'Login del Sistema', 
-			'Bienvenido al sistema EduLiq', 
-			'Sistema Administrativo de Liquidaciones.'
-			],
-		'Logeado' => [
-			'Usuario en el Sistema ', 
-			'Bienvenido al sistema ', 
-			'Ud. se ha logeado exitosamente en el sistema.'
-			]
-		];
-
-	switch ($log_mod) {
+	
+	/* Logeandose */
+	switch ($lModo) {
 		case 'Logeado':
 			$hLabels = <<<HTML
 				<legend>Usuario en el Sistema</legend> 
@@ -128,7 +120,8 @@
 					<div style="text-align:right">$uMail</div>
 				</label> 
 				<p>
-					<input type="submit" value="Salir del Sistema">
+					<input type="submit" name="boton" value="Salir del Sistema">
+					<input type="hidden" name="login" id="login" value="log-out">
 				</p>
 HTML;
 			break;
@@ -143,13 +136,14 @@ HTML;
 					<input type="password" name="pass" id="pass" value="">
 				</label> 
 				<p>
-					<input type="submit" name="login" id="login" value="Ingresar"> &nbsp; 
-					<input type="reset" name="reset" id="reset" value="Reiniciar">
+					<input type="submit" name="boton" value="Ingresar">
+					<input type="hidden" name="login" id="login" value="log-in">
 				</p>
 HTML;
 			break;
 		}
 
+	$hTIT = ($lModo == 'Logeado') ? 'Usuario en el Sistema' : 'Login del Sistema' ;
 
 	$hLogin = <<<HTML
 		<div id="formLogin">
@@ -167,12 +161,12 @@ HTML;
 				}, 1000);
 			
 		</script>
-	<input type="button" value="Cartel" class="loginbutton" data-type="zoomin">
+	<!-- <input type="button" value="Cartel" class="loginbutton" data-type="zoomin"> -->
 	<div class="overlay-container" style="display: none;">
 		<div class="msjlogin-container zoomin">
 			<center>
-				<h3><?php echo $msj_tit; ?></h3> 
-				<?php echo $msj_desc; ?>
+				<h3>$mTitu</h3> 
+				$mDesc
 				<br>
 				<br>
 				<span class="loginclose" align="center">Cerrar</span>

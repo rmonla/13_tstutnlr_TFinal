@@ -75,7 +75,7 @@
 			<div id="topnav"><!-- ###### <barra navegación> ###### -->
 				<ul>
 					<li id="MInicio" class="">
-						<a href="index_adm.php">Inicio</a>
+						<a href="./">Inicio</a>
 <!-- 						<ul>
 							<li class="last">
 								<a href="#">Cargar liquidaciones</a>

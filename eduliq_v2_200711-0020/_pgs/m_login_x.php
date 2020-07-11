@@ -49,7 +49,7 @@
 		//appSession(0);
 
 	if (isset($_POST['login'])) {
-		if (!$_POST['login'] == 'log-in') {
+		if ($_POST['login'] == 'log-out') {
 			$lModo  = 'Deslogear';
 			appSession();
 		} elseif ($_POST['usr'] = '' || $_POST['pass'] = '') {
@@ -88,6 +88,8 @@
 						$lModo = 'Logeado';
 						$mTitu = "Bienvenido $uNomb";
 						$mDesc = 'Ud. se ha logeado exitosamente en el sistema.';
+	
+
 	$log_mod  = 'NoLogeado';
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';

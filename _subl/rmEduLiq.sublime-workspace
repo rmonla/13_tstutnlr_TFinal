@@ -82,12 +82,14 @@
 	[
 		"/home/rmonla/Documentos/GitHub/rmEdulic",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/_vers",
-		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018",
-		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_css",
-		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs"
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200710-0100",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200710-0100/_pgs"
 	],
 	"file_history":
 	[
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200710-0100/_pgs/m_login.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200710-0100/_pgs/m_login_x.php",
+		"/home/rmonla/Documentos/GitHub/rmEdulic/_subl/rmEduLiq.sublime-project",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/m_login.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/index.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/p_adm.php",
@@ -96,7 +98,6 @@
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_pgs/login/login.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_main/fxs.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/eduliq_v2_200708-2018/_main/fxsBD.php",
-		"/home/rmonla/Documentos/GitHub/rmEdulic/_subl/rmEduLiq.sublime-project",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/_vers/rmEduliq_v1_200708_estable/main/fxsBD.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/v1_estable/main/fxsBD.php",
 		"/home/rmonla/Documentos/GitHub/rmEdulic/v1_estable/login.php",
@@ -109,7 +110,7 @@
 	],
 	"find":
 	{
-		"height": 45.0
+		"height": 26.0
 	},
 	"find_in_files":
 	{
@@ -191,7 +192,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 33.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -228,7 +229,7 @@
 	"project": "rmEduLiq.sublime-project",
 	"replace":
 	{
-		"height": 62.0
+		"height": 48.0
 	},
 	"save_all_on_build": true,
 	"select_file":

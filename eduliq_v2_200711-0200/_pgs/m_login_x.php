@@ -1,17 +1,6 @@
 <?php  
 	include_once '_main/fxs.php';
 	
-	function appSession($estado = 0){
-		if (!$estado) {
-			session_unset();
-			session_destroy();
-		} else session_start();
-	}
-
-	$lModo = 'NoLogeado';
-	$mTitu = 'Bienvenido al sistema EduLiq';
-	$mDesc = 'Sistema Administrativo de Liquidaciones.';
-	
 
 	// if (isset($_SESSION['uIDE'])) { /* Logeado */
 		
@@ -42,30 +31,6 @@
 	
 	// } else
 
-	/* DesdeForm */
-
-
-					/*<®> Cargo los Datos <®>*/
-						$uPerf = $rg['perfil'];
-						$uLogi = $rg['usr']." ($uPerf)";
-						$uNomb = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
-						$uDocu = number_format($rg['docu'], '0', ",", ".");
-						$uDire = utf8_encode($rg['dir']);
-						$uTele = $rg['tel'];
-						$uMail = $rg['email'];
-					/*<®> Cargo la SESSION <®>*/
-						$_SESSION['uIDE'] = $rg['id'];
-						$_SESSION['uUSR'] = $rg['usr'];
-						$_SESSION['uPER'] = $rg['idperfil'];
-					/*<®> Cargo el Modo <®>*/
-						$lModo = 'Logeado';
-						$mTitu = "Bienvenido $uNomb";
-						$mDesc = 'Ud. se ha logeado exitosamente en el sistema.';
-	
-
-	$log_mod  = 'NoLogeado';
-	$msj_tit  = 'Bienvenido al sistema EduLiq';
-	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
 	
 					switch ($usr_perfil) {
 						case 'ADM':
@@ -84,40 +49,6 @@
 					}
 
 	
-	/* Logeandose */
-	switch ($lModo) {
-		case 'Logeado':
-			$hLabels = <<<HTML
-				<legend>Usuario en el Sistema</legend> 
-				<label for="usr">Nombre y Apellido: 
-					<h2><div style="text-align:right; font-style:italic">$uNomb</div></h2>
-				</label> 
-				<label for="usr">Usuario: 
-					<div style="text-align:right">$uLogi</div>
-				</label> 
-				<label for="usr">Documento: 
-					<div style="text-align:right">$uDocu</div>
-				</label> 
-				<label for="usr">Dirección: 
-					<div style="text-align:right">$uDire</div>
-				</label> 
-				<label for="usr">Teléfono: 
-					<div style="text-align:right">$uTele</div>
-				</label> 
-				<label for="usr">Mail: 
-					<div style="text-align:right">$uMail</div>
-				</label> 
-				<p>
-					<input type="submit" name="boton" value="Salir del Sistema">
-					<input type="hidden" name="login" id="login" value="log-out">
-				</p>
-HTML;
-			break;
-		
-		default:
-			$hLabels = <<<HTML
-	//var_dump($log_mod);
-	switch ($log_mod) {
 		/*<®> Login Normal <®>*/
 		case 'Logeado': ?>
 			<h2>Usuario en el Sistema</h2>
@@ -136,13 +67,6 @@ HTML;
 				<div style="text-align:right"><?php echo $usr_email; ?></div>
 				<input type="submit" value="Salir del Sistema">
 			</form>
-			<!-- largo script del msj -->
-			<script type="text/javascript">
-				window.setTimeout(function(){
-						$('.loginbutton').click();
-					}, 1000);
-				
-			</script>
 <?php break;
 		/*<®> No Logeado <®>*/
 		default: ?>
@@ -189,6 +113,14 @@ HTML;
 		<br>
 <?php break;
 	} ?>
+
+			<!-- largo script del msj -->
+			<script type="text/javascript">
+				window.setTimeout(function(){
+						$('.loginbutton').click();
+					}, 1000);
+				
+			</script>
 	<!-- <input type="button" value="Cartel" class="loginbutton" data-type="zoomin"> -->
 	<div class="overlay-container" style="display: none;">
 		<div class="msjlogin-container zoomin">

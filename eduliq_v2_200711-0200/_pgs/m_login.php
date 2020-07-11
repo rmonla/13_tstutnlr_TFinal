@@ -126,4 +126,26 @@ HTML;
 
 	// echo "<p>Modo = $lMod </p>";
 ?>
-	
+
+	<!-- largo script del msj 
+	<script type="text/javascript">
+		window.setTimeout(function(){
+				$('.loginbutton').click();
+			}, 1000);
+	</script>
+	-->
+
+	<!-- 
+	<input type="button" value="Cartel" class="loginbutton" data-type="zoomin"> 
+	<div class="overlay-container" style="display: none;">
+		<div class="msjlogin-container zoomin">
+			<center>
+				<h3>Título1</h3> 
+				Mensaje Mensaje Mensaje Mensaje 
+				<br>
+				<br>
+				<span class="loginclose" align="center">Cerrar</span>
+			</center>
+		</div>
+	</div>
+	-->

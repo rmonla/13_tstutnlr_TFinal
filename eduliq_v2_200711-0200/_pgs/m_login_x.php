@@ -45,32 +45,6 @@
 	/* DesdeForm */
 
 
-	/*<®> Deslogeado <®>*/
-		//appSession(0);
-
-	if (isset($_POST['login'])) {
-		if ($_POST['login'] == 'log-out') {
-			$lModo  = 'Deslogear';
-			appSession();
-		} elseif ($_POST['usr'] = '' || $_POST['pass'] = '') {
-			$lModo  = 'FaltanDatos';
-		} else {
-			$lModo  = 'Verificando';
-			/*<®> String Where <®>*/
-				$usr   = $_POST['usr'];
-				$pass  = md5($_POST['pass']);
-				$tbl   = 'ususrios';
-				$where = "usr='$usr' AND pass='$pass'";
-			/*<®> Verifico los Datos <®>*/
-				if(!contarRegs($tbl, $where)){
-					$lModo  = 'NoVerifica';
-				} else {
-					/*<®> Obtengo los datos de la base <®>*/
-						$q  = "SELECT u.*, p.perfil 
-								FROM $tbl u
-								INNER JOIN perfiles p ON p.id = u.idperfil
-								WHERE $where";
-						$rg = mysqli_fetch_array(ejecutar($q));
 					/*<®> Cargo los Datos <®>*/
 						$uPerf = $rg['perfil'];
 						$uLogi = $rg['usr']." ($uPerf)";
@@ -80,7 +54,6 @@
 						$uTele = $rg['tel'];
 						$uMail = $rg['email'];
 					/*<®> Cargo la SESSION <®>*/
-						appSession(1);
 						$_SESSION['uIDE'] = $rg['id'];
 						$_SESSION['uUSR'] = $rg['usr'];
 						$_SESSION['uPER'] = $rg['idperfil'];
@@ -94,64 +67,6 @@
 	$msj_tit  = 'Bienvenido al sistema EduLiq';
 	$msj_desc = 'Sistema Administrativo de Liquidaciones.';
 	
-	//var_dump($_POST['usr'] != '');
-	session_start();
-	//var_dump($_SESSION);
-	if (isset($_SESSION['usr_id'])) {
-		$usr_id  = $_SESSION['usr_id'];
-		$log_mod = 'Logeado';
-		/*<®> Obtengo los datos del registro del usuario <®>*/
-			$q = "SELECT u.*, p.perfil 
-					FROM usuarios u
-					INNER JOIN perfiles p ON p.id = u.idperfil
-					WHERE u.id = $usr_id";
-			$rg = mysqli_fetch_array(ejecutar($q));
-		/*<®> Datos del usuario <®>*/
-			$usr_perfil = $rg['perfil'];
-			$usr_login = $rg['usr']." ($usr_perfil)";
-			$usr_nomb  = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
-			$usr_docu  = number_format($rg['docu'], '0', ",", ".");
-			$usr_dir   = utf8_encode($rg['dir']);
-			$usr_tel   = $rg['tel'];
-			$usr_email = $rg['email'];
-		/*<®> Cargo las Vars de SESSION <®>*/
-			$_SESSION['usr_id'] = $rg['id'];
-			$_SESSION['usr']    = $rg['usr'];
-			$_SESSION['perfil'] = $rg['idperfil'];
-	}
-
-	if(isset($_POST['usr'], $_POST['pass']) 
-		and $_POST['usr'] != '' 
-		and $_POST['pass'] != ''){
-		/*<®> String Where <®>*/
-			$usr   = $_POST['usr'];
-			$pass  = md5($_POST['pass']);
-			$tbl   = 'usuarios';
-			$where = "usr='$usr' AND pass='$pass'";
-		/*<®> Verifico el login <®>*/
-			if(contarRegs($tbl, $where) > '0'){
-				/*<®> Obtengo los datos del registro del usuario <®>*/
-					$q = "SELECT u.*, p.perfil 
-							FROM usuarios u
-							INNER JOIN perfiles p ON p.id = u.idperfil
-							WHERE $where";
-					$rg = mysqli_fetch_array(ejecutar($q));
-				/*<®> Datos del usuario <®>*/
-					$usr_perfil = $rg['perfil'];
-					$usr_login = $rg['usr']." ($usr_perfil)";
-					$usr_nomb  = utf8_encode($rg['nomb'].' '.strtoupper($rg['ape']));
-					$usr_docu  = number_format($rg['docu'], '0', ",", ".");
-					$usr_dir   = utf8_encode($rg['dir']);
-					$usr_tel   = $rg['tel'];
-					$usr_email = $rg['email'];
-				/*<®> Cargo las Vars de SESSION <®>*/
-					$_SESSION['usr_id'] = $rg['id'];
-					$_SESSION['usr']    = $rg['usr'];
-					$_SESSION['perfil'] = $rg['idperfil'];
-					$log_mod            = 'Logeado';
-					$msj_tit            = "Bienvenido $usr_nomb";
-					$msj_desc           = 'Ud. se ha logeado exitosamente en el sistema.';
-			
 					switch ($usr_perfil) {
 						case 'ADM':
 								header('location:_pgs/p_adm.php');
@@ -167,10 +82,6 @@
 								header('location:index.php');
 							break;
 					}
-			}
-	} else {
-		$lModo  = 'Deslogeado';
-	}
 
 	
 	/* Logeandose */
